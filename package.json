@@ -1,5 +1,5 @@
 {
-  "name": "TiCons",
+  "name": "ticons",
   "preferGlobal": true,
   "version": "0.0.1",
   "description": "Generate Titanium & Alloy icons, splash and other assets",

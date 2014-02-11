@@ -56,7 +56,7 @@ Feel free to fork and contribute towards:
 - Add options for radius, min/max dpi, locale etc.
 - Add generating general assets in various densities.
 
-## Tests [![Build Status](https://travis-ci.org/fokkezb/ticons-cli.png?branch=master)](https://travis-ci.org/fokkezb/ticons-cli)
+## Tests [![Build Status](https://travis-ci.org/FokkeZB/TiCons-CLI.png)](https://travis-ci.org/FokkeZB/TiCons-CLI)
 
 1. Install [node.js](http://nodejs.org/).
 2. Install [grunt](http://gruntjs.com/): `[sudo] npm install -g grunt-cli`

@@ -25,17 +25,15 @@ program.command('icons [input]')
   .usage('[input] [options]')
   .description('generate icons')
 //.option('-r, --radius <percentage>', 'percentage between 0 and 50 (Android)')
-.action(icons);
+  .action(icons);
 
-/*
-program.command('splashes <input>`')
+program.command('splashes [input]')
   .usage('<input> [options]')
-  .description('generate splash screens (launch images)')
+  .description('generate splash screens (aka launch images)')
 //.option('-l, --locale <code>', 'outputs to locale specific folder')
-//.option('-o, --orientation <orientatio>', 'one of: ' + constants.orientations.join(','));
-//.option('-f, --no-fix', 'do not use Apple specs instead of Appcelerator, fixing splash shift')
-.action(splashes);
-*/
+  .option('-o, --orientation <orientatio>', 'one of: ' + constants.orientations.join(','))
+  .option('-f, --no-fix', 'do not fix splash shift')
+  .action(splashes);
 
 program.parse(process.argv);
 
@@ -58,6 +56,23 @@ function icons(input) {
       logger.error(err);
     } else {
       logger.ok('Generated ' + _.size(output) + ' icons');
+    }
+  });
+}
+
+function splashes(input) {
+  notifier.update && notifier.notify();
+
+  var options = _.pick(this, 'noOverwrite', 'minDpi', 'maxDpi', 'outputDir', 'classic', 'targets', 'noFix');
+
+  options.cli = true;
+  options.input = input;
+
+  ticons.splashes(options, function(err, output) {
+    if (err) {
+      logger.error(err);
+    } else {
+      logger.ok('Generated ' + _.size(output) + ' splashes');
     }
   });
 }

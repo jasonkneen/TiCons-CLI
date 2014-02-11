@@ -21,8 +21,8 @@ program
   .option('-c, --classic', 'use classic instead of Alloy paths')
   .option('-t, --targets <targets>', 'one or more of: ' + constants.targets.join(','));
 
-program.command('icons <input>')
-  .usage('<input> [options]')
+program.command('icons [input]')
+  .usage('[input] [options]')
   .description('generate icons')
 //.option('-r, --radius <percentage>', 'percentage between 0 and 50 (Android)')
 .action(icons);

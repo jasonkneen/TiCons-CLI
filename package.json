@@ -28,6 +28,9 @@
   "bin": {
     "ticons": "./cli.js"
   },
+  "scripts": {
+    "test": "grunt test"
+  },
   "directories": {
     "lib": "./lib"
   },

@@ -2,3 +2,4 @@ test
 Gruntfile.js
 .travis.yml
 .gitignore
+.git

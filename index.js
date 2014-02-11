@@ -1,4 +1,6 @@
 var _ = require('underscore'),
+  path = require('path'),
+  fs = require('fs'),
   async = require('async'),
   config = require('./lib/config'),
   jobs = require('./lib/jobs');
@@ -17,8 +19,18 @@ exports.icons = function(opts, callback) {
       return callback(err);
     }
 
+    // no input
     if (!cfg.input) {
-      return callback('missing required argument `input`');
+      var iTunesArtwork = path.join(cfg.outputDir, cfg.assetsDir, 'iphone', 'iTunesArtwork@2x');
+
+      // use iTunesArtwork
+      if (fs.existsSync(iTunesArtwork)) {
+        cfg.input = iTunesArtwork;
+      }
+
+      else {
+        return callback('missing required argument `input` or default: ' + iTunesArtwork);
+      }
     }
 
     // create tasks

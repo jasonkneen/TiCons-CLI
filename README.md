@@ -24,9 +24,9 @@ Hit `ticons -h` for full usage, but these will cover 80%:
 - Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
 
 
-	```
-	~/ ticons icons icon.png -d foo -t ipad,android -c
-	```
+     ```
+     ~/ ticons icons icon.png -d foo -t ipad,android -c
+     ```
 	
 ### Module
 For the module use the full option names as properties in the first argument. Specify a callback that accepts an error and result as the second argument.

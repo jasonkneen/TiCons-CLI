@@ -5,15 +5,34 @@ Command-line and CommonJS module version of [http://ticons.fokkezb.nl](TiCons) t
 
 ## Install [![NPM version](https://badge.fury.io/js/ticons.png)](http://badge.fury.io/js/ticons)
 
+As global CLI:
+
 ```
 [sudo] npm install -g ticons
+```
+
+As a dependency in your projects `package.json`:
+
+```
+{
+  "name": "your-project",
+  "dependencies": {
+    "ticons": "*"
+  }
+}
+```
+
+TiCons requires [ImageMagick](http://www.imagemagick.org/) CLI tools to be installed. If you're on OS X you can use Homebrew:
+
+```
+brew install imagemagick
 ```
 
 ## Quick Start
 TiCons can be used both as CLI and CommonJS module.
 
 ### CLI
-Hit `ticons -h` for full usage, but these will cover 80%:
+Hit `ticons -h` for full usage, but this will cover 80%:
 
 - Detect if the CWD contains a classic or Alloy project and generate icons for all `tiapp.xml` deployment targets, based on `iTunesArtwork@2x`:
 

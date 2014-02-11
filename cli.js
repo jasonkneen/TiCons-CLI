@@ -17,7 +17,7 @@ program
 //.option('-w, --no-overwrite', 'do not overwrite existing files')
 //.option('--min-dpi <dpi>', 'minimum density (Android)')
 //.option('--max-dpi <dpi>', 'maximum density (Android)')
-.option('-d, --output-dir', 'directory to write to')
+  .option('-d, --output-dir <path>', 'directory to write to')
   .option('-c, --classic', 'use classic instead of Alloy paths')
   .option('-t, --targets <targets>', 'one or more of: ' + constants.targets.join(','));
 
@@ -48,21 +48,16 @@ if (program.args.length === 0 || typeof program.args[program.args.length - 1] ==
 function icons(input) {
   notifier.update && notifier.notify();
 
-  var options = _.pick(this, 'noOverwrite', 'minDpi', 'maxDpi', 'classic', 'targets');
+  var options = _.pick(this, 'noOverwrite', 'minDpi', 'maxDpi', 'outputDir', 'classic', 'targets');
 
   options.cli = true;
   options.input = input;
 
-  try {
-    ticons.icons(options, function(err, output) {
-      if (err) {
-        logger.error(err);
-      } else {
-        logger.ok('Generated ' + _.size(output) + ' icons');
-      }
-    });
-
-  } catch (err) {
-    logger.error(err);
-  }
+  ticons.icons(options, function(err, output) {
+    if (err) {
+      logger.error(err);
+    } else {
+      logger.ok('Generated ' + _.size(output) + ' icons');
+    }
+  });
 }

@@ -1,0 +1,57 @@
+{
+  "name": "TiCons",
+  "preferGlobal": true,
+  "version": "0.0.0",
+  "description": "Generate Titanium & Alloy icons, splash and other assets",
+  "keywords": [
+    "titanium",
+    "alloy",
+    "appcelerator",
+    "icons",
+    "splashes",
+    "launch",
+    "images",
+    "assets",
+    "generator"
+  ],
+  "homepage": "https://github.com/fokkezb/ticons-cli",
+  "bugs": {
+    "url": "https://github.com/fokkezb/ticons-cli/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Fokke Zandbergen",
+    "email": "mail@fokkezb.nl",
+    "url": "http://fokkezb.nl"
+  },
+  "main": "index.js",
+  "bin": {
+    "ticons": "./cli.js"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "imagemagick": "~0.1.3",
+    "async": "~0.2.10",
+    "fs-extended": "~0.2.0",
+    "colors": "~0.6.2",
+    "commander": "~2.1.0",
+    "update-notifier": "~0.1.7",
+    "timodules": "~0.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fokkezb/ticons-cli.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-mocha-test": "~0.8.1",
+    "mocha": "~1.17.0",
+    "should": "~3.1.2"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}

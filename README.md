@@ -1,5 +1,5 @@
 # TiCons CLI
-Command-line and CommonJS module version of [http://ticons.fokkezb.nl](TiCons) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.
+Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.
 
 [![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http:/appcelerator.com/alloy/)
 
@@ -39,14 +39,13 @@ Hit `ticons -h` for full usage, but this will cover 80%:
      ```
      ~/myproject $ ticons icons
      ```
-     
-- Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
 
+- Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
 
      ```
      ~/ ticons icons icon.png -d foo -t ipad,android -c
      ```
-	
+
 ### Module
 For the module use the full option names as properties in the first argument. Specify a callback that accepts an error and result as the second argument.
 

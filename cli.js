@@ -14,24 +14,22 @@ program
   .version(package.version, '-v, --version')
   .description(package.description)
   .usage('command <args> [options]')
-//.option('-w, --no-overwrite', 'do not overwrite existing files')
-//.option('--min-dpi <dpi>', 'minimum density (Android)')
-//.option('--max-dpi <dpi>', 'maximum density (Android)')
+  .option('-m, --min-dpi <dpi>', 'minimum density to generate, e.g. `160` or `mdpi` (Android)')
+  .option('-M, --max-dpi <dpi>', 'maximum density to generate, e.g. `240` or `hdpi` (Android)')
   .option('-d, --output-dir <path>', 'directory to write to')
-  .option('-c, --classic', 'use classic instead of Alloy paths')
-  .option('-t, --targets <targets>', 'one or more of: ' + constants.targets.join(','));
+  .option('-c, --classic', 'force use classic instead of Alloy paths')
+  .option('-p, --platforms <platforms>', 'none to detect, `all` or some of: ' + constants.platforms.join(','))
+  .option('-t, --trace', 'shows initialized config and actual imagemagick commands');
 
 program.command('icons [input]')
-  .usage('[input] [options]')
   .description('generate icons')
-//.option('-r, --radius <percentage>', 'percentage between 0 and 50 (Android)')
+  .option('-r, --radius <percentage>', 'percentage between 0 and 50 (all platforms except iOS)')
   .action(icons);
 
 program.command('splashes [input]')
-  .usage('<input> [options]')
   .description('generate splash screens (aka launch images)')
-//.option('-l, --locale <code>', 'outputs to locale specific folder')
-  .option('-o, --orientation <orientatio>', 'one of: ' + constants.orientations.join(','))
+  .option('-l, --locale <code>', 'outputs to i18n folders')
+  .option('-o, --orientation <orientation>', 'none to detect, `all` or one of: ' + constants.orientations.join(','))
   .option('-f, --no-fix', 'do not fix splash shift')
   .action(splashes);
 
@@ -43,10 +41,10 @@ if (program.args.length === 0 || typeof program.args[program.args.length - 1] ==
   program.help();
 }
 
-function icons(input) {
+function icons(input, env) {
   notifier.update && notifier.notify();
 
-  var options = _.pick(this, 'noOverwrite', 'minDpi', 'maxDpi', 'outputDir', 'classic', 'targets');
+  var options = _filterOptions(env);
 
   options.cli = true;
   options.input = input;
@@ -55,15 +53,15 @@ function icons(input) {
     if (err) {
       logger.error(err);
     } else {
-      logger.ok('Generated ' + _.size(output) + ' icons');
+      logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' icons');
     }
   });
 }
 
-function splashes(input) {
+function splashes(input, env) {
   notifier.update && notifier.notify();
 
-  var options = _.pick(this, 'noOverwrite', 'minDpi', 'maxDpi', 'outputDir', 'classic', 'targets', 'noFix');
+  var options = _filterOptions(env);
 
   options.cli = true;
   options.input = input;
@@ -72,7 +70,19 @@ function splashes(input) {
     if (err) {
       logger.error(err);
     } else {
-      logger.ok('Generated ' + _.size(output) + ' splashes');
+      logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' splashes');
     }
   });
+}
+
+function _filterOptions(o) {
+  var opts = o.parent ? _filterOptions(o.parent) : {};
+
+  _.each(o, function(v, k) {
+    if (k[0] !== '_' && !_.isObject(v)) {
+      opts[k] = v;
+    }
+  });
+
+  return opts;
 }

@@ -6,19 +6,19 @@ var should = require('should'),
 
 var tmpDir = path.join(__dirname, '..', 'tmp');
 
-describe('icons', function() {
+describe('splashes', function() {
 
   describe('alloy', function() {
-    this.timeout(10000);
+    this.timeout(20000);
 
     before(function() {
       fs.createDir(tmpDir, 0755);
     });
 
-    it('generates 25 files', function(done) {
+    it('generates 29 files', function(done) {
 
-      ticons.icons({
-        input: path.join(__dirname, 'icon.png'),
+      ticons.splashes({
+        input: path.join(__dirname, 'splash.png'),
         outputDir: tmpDir,
         alloy: true
       }, function(err, output) {
@@ -27,7 +27,7 @@ describe('icons', function() {
           return done(new Error(err));
         }
 
-        _.size(output).should.be.equal(25);
+        _.size(output).should.be.equal(29);
 
         should(_.every(output, function(output, name) {
           return fs.existsSync(output);

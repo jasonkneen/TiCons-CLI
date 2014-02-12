@@ -10,14 +10,14 @@ describe('specs', function() {
       specs.should.be.an.Object;
     });
 
-    it('Have a property with iTunesArtwork spec', function() {
+    it('have a `ios-iTunesArtwork` with right spec', function() {
 
       specs['ios-iTunesArtwork'].should.be.an.Object;
       specs['ios-iTunesArtwork'].should.be.eql({
-        path: 'iphone/iTunesArtwork',
+        type: 'icon',
+        path: ':assets:/iphone/iTunesArtwork',
         size: 512,
-        dpi: 72,
-        "targets": [
+        platforms: [
           "ios"
         ]
       });

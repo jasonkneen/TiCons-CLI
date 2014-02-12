@@ -22,12 +22,17 @@ describe('jobs', function() {
 
         spec.should.be.an.Object;
         spec.should.be.eql({
-          path: 'iphone/iTunesArtwork',
+          type: 'icon',
+          path: ':assets:/iphone/iTunesArtwork',
           size: 512,
-          dpi: 72,
-          "targets": [
+          height: 512,
+          width: 512,
+          platforms: [
             "ios"
-          ]
+          ],
+          name: "ios-iTunesArtwork",
+          dpi: 72,
+          output: "Resources/iphone/iTunesArtwork"
         });
 
         done();
@@ -46,26 +51,25 @@ describe('jobs', function() {
 
       var specs = jobs.getSpecs({
         outputDir: '.',
-        targets: ['ipad', 'android']
+        platforms: ['ipad', 'android']
       }, function(err, specs) {
 
         if (err) {
           return done(new Error(err));
         }
 
-        specs.should.be.an.Object;
-        specs.should.not.be.empty;
+        specs.should.be.an.Object.and.not.be.empty;
 
         should(_.every(specs, function(spec) {
-          return _.indexOf(spec.targets, 'ipad') !== -1 || _.indexOf(spec.targets, 'ios') !== -1 || _.indexOf(spec.targets, 'android') !== -1;
+          return _.indexOf(spec.platforms, 'ipad') !== -1 || _.indexOf(spec.platforms, 'ios') !== -1 || _.indexOf(spec.platforms, 'android') !== -1;
         })).is.true;
 
         should(_.some(specs, function(spec) {
-          return _.indexOf(spec.targets, 'ipad') !== -1 || _.indexOf(spec.targets, 'ios') !== -1;
+          return _.indexOf(spec.platforms, 'ipad') !== -1 || _.indexOf(spec.platforms, 'ios') !== -1;
         })).is.true;
 
         should(_.some(specs, function(spec) {
-          return _.indexOf(spec.targets, 'android') !== -1;
+          return _.indexOf(spec.platforms, 'android') !== -1;
         })).is.true;
 
         done();
@@ -115,7 +119,7 @@ describe('jobs', function() {
           return done(new Error(err));
         }
 
-        tasks.should.be.an.Array;
+        tasks.should.be.an.Object;
 
         done();
       });

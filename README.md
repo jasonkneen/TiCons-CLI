@@ -31,10 +31,13 @@ brew install imagemagick
 ## Quick Start
 TiCons can be used both as CLI and CommonJS module.
 
+### Smart defaults
+If the `outputDir` (`-d`) contains a project, *TiCons* will figure out lots of smart defaults, like if the project is Alloy or not, if it is locked to a single orientation and what platforms are targeted. Use the `trace` (`-t`) option to see what exact configuration is used.
+
 ### CLI
 Hit `ticons -h` for full usage, but this will cover 80%:
 
-- Detect if the CWD contains a classic or Alloy project and generate icons for all `tiapp.xml` deployment targets, based on `iTunesArtwork@2x`:
+- Detect if the CWD contains a classic or Alloy project and generate icons for all `tiapp.xml` deployment targets, based on `iphone/iTunesArtwork@2x`:
 
      ```
      ~/myproject $ ticons icons
@@ -43,8 +46,22 @@ Hit `ticons -h` for full usage, but this will cover 80%:
 - Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
 
      ```
-     ~/ ticons icons icon.png -d foo -t ipad,android -c
+     ~ ticons icons icon.png -d foo -p ipad,android -c
      ```
+
+- Detect if the CWD contains a classic or Alloy project and generate splashes for all `tiapp.xml` deployment targets, based on `iphone/Default@2x.png`:
+
+     ```
+     ~/myproject ticons splashes
+     ```
+     
+- Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
+
+     ```
+     ~ ticons splashes splash.png -d foo -p ipad,android -c
+     ```
+
+    **TIP:** For best results use a 2048x2048 PNG with the main artwork in the center 1024x1024 pixels so it crops nice for all dimensions and orientations.
 
 ### Module
 For the module use the full option names as properties in the first argument. Specify a callback that accepts an error and result as the second argument.
@@ -70,9 +87,10 @@ ticons.icons({
 ## Roadmap
 Feel free to fork and contribute towards:
 
-- Add splashes
-- Add options for radius, min/max dpi, locale etc.
-- Add generating general assets in various densities.
+- Add generating 9-patch splash for Android.
+- Add generating App Store and Google Play assets based on icon.
+- Add generating general assets in various densities based on retina or xhdpi.
+- Add generating HTML splash for Mobile Web.
 
 ## Tests [![Build Status](https://travis-ci.org/FokkeZB/TiCons-CLI.png)](https://travis-ci.org/FokkeZB/TiCons-CLI)
 

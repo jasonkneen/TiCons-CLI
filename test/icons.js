@@ -27,7 +27,7 @@ describe('icons', function() {
           return done(new Error(err));
         }
 
-        output.should.be.eql({
+        _.sortBy(output, _.identity).should.be.eql(_.sortBy({
           "ios-appicon-60": tmpDir + "/app/assets/iphone/appicon-60.png",
           "ios-appicon@2x": tmpDir + "/app/assets/iphone/appicon@2x.png",
           "ios-appicon": tmpDir + "/app/assets/iphone/appicon.png",
@@ -40,20 +40,20 @@ describe('icons', function() {
           "ios-appicon-Small-40": tmpDir + "/app/assets/iphone/appicon-Small-40.png",
           "ios-appicon-76@2x": tmpDir + "/app/assets/iphone/appicon-76@2x.png",
           "ios-iTunesArtwork": tmpDir + "/app/assets/iphone/iTunesArtwork",
-          "android-appicon-ldpi": tmpDir + "tmp/platform/android/res/drawable-ldpi/appicon.png",
+          "android-appicon-ldpi": tmpDir + "/platform/android/res/drawable-ldpi/appicon.png",
           "ios-appicon-Small-40@2x": tmpDir + "/app/assets/iphone/appicon-Small-40@2x.png",
           "ios-appicon-Small-50": tmpDir + "/app/assets/iphone/appicon-Small-50.png",
           "ios-appicon-Small-50@2x": tmpDir + "/app/assets/iphone/appicon-Small-50@2x.png",
-          "android-appicon-mdpi": tmpDir + "tmp/platform/android/res/drawable-mdpi/appicon.png",
+          "android-appicon-mdpi": tmpDir + "/platform/android/res/drawable-mdpi/appicon.png",
           "android-appicon": tmpDir + "/app/assets/android/appicon.png",
-          "android-appicon-hdpi": tmpDir + "tmp/platform/android/res/drawable-hdpi/appicon.png",
-          "android-appicon-xhdpi": tmpDir + "tmp/platform/android/res/drawable-xhdpi/appicon.png",
+          "android-appicon-hdpi": tmpDir + "/platform/android/res/drawable-hdpi/appicon.png",
+          "android-appicon-xhdpi": tmpDir + "/platform/android/res/drawable-xhdpi/appicon.png",
           "ios-iTunesArtwork@2x": tmpDir + "/app/assets/iphone/iTunesArtwork@2x",
           "tizen-appicon": tmpDir + "/app/assets/tizen/appicon.png",
-          "android-appicon-xxhdpi": tmpDir + "tmp/platform/android/res/drawable-xxhdpi/appicon.png",
+          "android-appicon-xxhdpi": tmpDir + "/platform/android/res/drawable-xxhdpi/appicon.png",
           "blackberry-appicon": tmpDir + "/app/assets/blackberry/appicon.png",
           "mobileweb-appicon": tmpDir + "/app/assets/mobileweb/appicon.png"
-        });
+        }, _.identity));
 
         should(_.every(output, function(output, name) {
           return fs.existsSync(output);

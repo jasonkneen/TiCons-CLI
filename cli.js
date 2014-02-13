@@ -30,7 +30,8 @@ program.command('splashes [input]')
   .description('generate splash screens (aka launch images)')
   .option('-l, --locale <code>', 'outputs to i18n folders')
   .option('-o, --orientation <orientation>', 'none to detect, `all` or one of: ' + constants.orientations.join(','))
-  .option('-f, --no-fix', 'do not fix splash shift')
+  .option('-n, --no-nine', 'do NOT generate 9-patch images (Android)')
+  .option('-f, --no-fix', 'do NOT fix errors in Appcelerator specs')
   .action(splashes);
 
 program.parse(process.argv);

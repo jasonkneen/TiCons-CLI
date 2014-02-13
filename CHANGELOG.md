@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+- Adds `--nine` to **not** use the now included 9-patch support!
+- Adds fixes for some errors in Appcelerator Android splash specs
+
 ## 0.1.0
 - **BREAKING:** Renamed `targets` to `platforms` to be inline with `ti`.
 - Adds `splashes` to generate splash screens (aka launch images).

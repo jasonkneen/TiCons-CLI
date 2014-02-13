@@ -31,37 +31,22 @@ brew install imagemagick
 ## Quick Start
 TiCons can be used both as CLI and CommonJS module.
 
-### Smart defaults
-If the `outputDir` (`-d`) contains a project, *TiCons* will figure out lots of smart defaults, like if the project is Alloy or not, if it is locked to a single orientation and what platforms are targeted. Use the `trace` (`-t`) option to see what exact configuration is used.
-
 ### CLI
-Hit `ticons -h` for full usage, but this will cover 80%:
+Hit `ticons -h` for full usage, but thanks to [Smart Defaults](#smart-defaults) this will work in most cases:
 
-- Detect if the CWD contains a classic or Alloy project and generate icons for all `tiapp.xml` deployment targets, based on `iphone/iTunesArtwork@2x`:
+- Detects if the CWD contains a classic or Alloy project, what platforms are targeted and then generates required icons using `iphone/iTunesArtwork@2x` as input:
 
      ```
      ~/myproject $ ticons icons
      ```
 
-- Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
-
-     ```
-     ~ ticons icons icon.png -d foo -p ipad,android -c
-     ```
-
-- Detect if the CWD contains a classic or Alloy project and generate splashes for all `tiapp.xml` deployment targets, based on `iphone/Default@2x.png`:
+- Detects if the CWD contains a classic or Alloy project, what platforms are targeted, if the app is locked to one orientation and then generates required splashes using `iphone/Default@2x.png` as input. If Android is targetted, 9-Patch images will be generated and the required `theme.xml` created for you if missing.
 
      ```
      ~/myproject ticons splashes
      ```
      
-- Output iPad and Android icons to a classic folder structure under `foo`, using `icon.png` as the input:
-
-     ```
-     ~ ticons splashes splash.png -d foo -p ipad,android -c
-     ```
-
-    **TIP:** For best results use a 2048x2048 PNG with the main artwork in the center 1024x1024 pixels so it crops nice for all dimensions and orientations.
+You can specify diferent input (`ticons icons myIcon.png`) and options to override the defaults for fine-tune the results to your liking.
 
 ### Module
 For the module use the full option names as properties in the first argument. Specify a callback that accepts an error and result as the second argument.
@@ -84,13 +69,42 @@ ticons.icons({
 });
 ```
 
+## Smart defaults
+If the `outputDir` (or `-d` or CWD if missing) contains a project, *TiCons* will figure out lots of smart defaults:
+
+- If the project is classic instead of Alloy.
+- What platforms are targetted (`<deployment-targets>`).
+- If the app is locked to one orientation (`UISupportedInterfaceOrientations` etc.).
+
+In the CLI, you can add the `trace` (`-t`) option to see exactly what configuration is used based on your options and the smart defaults.
+
+## Splashes & 9-Patch
+By default *TiCons* generated [9-Patch splashes](http://www.tidev.io/2014/02/12/android-splash-screens-using-9-patch-images/) for Android. You can fall back to cropping to regular images using the `--no-nine` (`-n`) option.
+
+### 9-Patch best practice
+Understand that *TiCons* will fit your input image inside the `not-long-x` dimensions and then add 9-Patch black pixels to indicate that only the outer most line of pixels on each side should be stretched. For best results use a square image of 960x960 pixels that includes the minimal amount of padding, making sure that the outer most pixels are all of the same color.
+
+The required `platform/android/res/values/theme.xml` will be created if you don't have it already. Make sure the assets `android` directory does not contain any old non-9-Patch splashes, because else they will take precendece.
+
+### Cropping best practice
+For best results with 9-Patch disabled use a 2048x2048 image that has its main artwork in the center 1024x1024 pixels. Anything outside of that box might be cropped depending on the orientation and ratio of the target splashes.
+
+## Locale
+You can use the `locale` (`-l`) option to specify a 2-letter locale. Only splashes supporting locale paths will be generated when you use this option.
+
+## Fix or not to Fix
+By default, some errors in the Appcelerator specs related to iOS and Android splash screen dimensions are fixed. Use `-no-fix` to disable this.
+
+## Radius
+If you use the `iTunesArtwork@2x` as input for Android and other platforms icons, you might want to round the corners a bit as only iOS does this for you. Simply pass a percentage between `0` and `50` to `--radius` (`-r`).
+
 ## Roadmap
 Feel free to fork and contribute towards:
 
-- Add generating 9-patch splash for Android.
 - Add generating App Store and Google Play assets based on icon.
 - Add generating general assets in various densities based on retina or xhdpi.
 - Add generating HTML splash for Mobile Web.
+
 
 ## Tests [![Build Status](https://travis-ci.org/FokkeZB/TiCons-CLI.png)](https://travis-ci.org/FokkeZB/TiCons-CLI)
 

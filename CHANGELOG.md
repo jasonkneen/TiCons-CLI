@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+- Fixes locked orientation not detected correctly.
+- Fizes `ios` platform not being translated to spec filter correctly.
+
 ## 0.3.0
 - **BREAKING**: Renamed `classic` to `alloy` (detection when not used stays same).
 - Adds `--no-crop` to **not** crop but contain and fill splashes.

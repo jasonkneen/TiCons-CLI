@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.1
+## 0.3.0
 - **BREAKING**: Renamed `classic` to `alloy` (detection when not used stays same).
 - Adds `--no-crop` to **not** crop but contain and fill splashes.
 

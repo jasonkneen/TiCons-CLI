@@ -79,7 +79,7 @@ If the `outputDir` (or `-d` or CWD if missing) contains a project, *TiCons* will
 In the CLI, you can add the `trace` (`-t`) option to see exactly what configuration is used based on your options and the smart defaults.
 
 ## Splashes & 9-Patch
-By default *TiCons* generated [9-Patch splashes](http://www.tidev.io/2014/02/12/android-splash-screens-using-9-patch-images/) for Android. You can fall back to cropping to regular images using the `--no-nine` (`-n`) option.
+By default *TiCons* generated [9-Patch splashes](http://www.tidev.io/2014/02/12/android-splash-screens-using-9-patch-images/) for Android. You can disable this using `--no-nine` (`-n`) option and as an alternative disable cropping as well using `--no-crop` (`-c`) to contain and fill splash screen instead.
 
 ### 9-Patch best practice
 Understand that *TiCons* will fit your input image inside the `not-long-x` dimensions and then add 9-Patch black pixels to indicate that only the outer most line of pixels on each side should be stretched. For best results use a square image of 960x960 pixels that includes the minimal amount of padding, making sure that the outer most pixels are all of the same color.
@@ -88,6 +88,9 @@ The required `platform/android/res/values/theme.xml` will be created if you don'
 
 ### Cropping best practice
 For best results with 9-Patch disabled use a 2048x2048 image that has its main artwork in the center 1024x1024 pixels. Anything outside of that box might be cropped depending on the orientation and ratio of the target splashes.
+
+### Filling best practive
+When cropping is disabled using `--no-crop` (`-c`) the input image will be resized to fit instead of cover the target dimension. The remaining area is then filled by stretching the outer most line of pixels on each side, basically simulating 9-Patch, but then for all platforms. For best results, see the best practice for 9-Patch.
 
 ## Locale
 You can use the `locale` (`-l`) option to specify a 2-letter locale. Only splashes supporting locale paths will be generated when you use this option.

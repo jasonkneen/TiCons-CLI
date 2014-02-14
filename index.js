@@ -2,7 +2,6 @@ var _ = require('underscore'),
   path = require('path'),
   fs = require('fs-extended'),
   async = require('async'),
-  gm = require('gm'),
   config = require('./lib/config'),
   constants = require('./lib/constants'),
   logger = require('./lib/logger'),
@@ -14,6 +13,8 @@ var _ = require('underscore'),
  * @param  {Function} callback callback(err, output)
  */
 exports.icons = function(opts, callback) {
+  opts = opts || {};
+  opts.type = 'icon';
 
   // config
   config(opts, function(err, cfg) {
@@ -34,9 +35,6 @@ exports.icons = function(opts, callback) {
       }
     }
 
-    // filter type
-    cfg.type = 'icon';
-
     // create tasks
     jobs.createTasks(cfg, function(err, tasks) {
 
@@ -50,6 +48,7 @@ exports.icons = function(opts, callback) {
 
       // run tasks
       async.parallel(tasks, callback);
+
     });
 
   });
@@ -62,6 +61,8 @@ exports.icons = function(opts, callback) {
  * @param  {Function} callback callback(err, output)
  */
 exports.splashes = function(opts, callback) {
+  opts = opts || {};
+  opts.type = 'splash';
 
   // config
   config(opts, function(err, cfg) {
@@ -82,9 +83,6 @@ exports.splashes = function(opts, callback) {
       }
     }
 
-    // filter type
-    cfg.type = 'splash';
-
     // create tasks
     jobs.createTasks(cfg, function(err, tasks) {
 
@@ -96,48 +94,23 @@ exports.splashes = function(opts, callback) {
         logger.info('Starting ' + _.size(tasks) + ' jobs');
       }
 
-      // 9-patch
+      // write theme.xml
       if (cfg.nine && _.indexOf(cfg.platforms, 'android') !== -1) {
+        var themePath = path.join(cfg.outputDir, 'platform', 'android', 'res', 'values', 'theme.xml');
 
-        if (cfg.cli) {
-          logger.info('Reading original image dimensions for 9-patch support');
+        if (!fs.existsSync(themePath)) {
+
+          if (cfg.cli) {
+            logger.info('Creating theme to enable 9-Patch: ' + themePath.cyan);
+          }
+
+          fs.createFileSync(themePath, constants.theme);
         }
-
-        var im = gm.subClass({
-          imageMagick: true
-        });
-
-        // read input
-        im(cfg.input).ping().size(function(err, size) {
-
-          if (err) {
-            return callback(err);
-          }
-
-          cfg.inputWidth = size.width;
-          cfg.inputHeight = size.height;
-
-          var themePath = path.join(cfg.outputDir, 'platform', 'android', 'res', 'values', 'theme.xml');
-
-          // write theme.xml
-          if (!fs.existsSync(themePath)) {
-
-            if (cfg.cli) {
-              logger.info('Writing theme to enable 9-patch support: ' + themePath.cyan);
-            }
-
-            fs.createFileSync(themePath, constants.theme);
-          }
-
-          // run tasks
-          async.parallel(tasks, callback);
-        });
-
-      } else {
-
-        // run tasks
-        async.parallel(tasks, callback);
       }
+
+      // run tasks
+      async.parallel(tasks, callback);
+
     });
 
   });

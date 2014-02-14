@@ -1,7 +1,11 @@
 # Changelog
 
+## 0.2.1
+- **BREAKING**: Renamed `classic` to `alloy` (detection when not used stays same).
+- Adds `--no-crop` to **not** crop but contain and fill splashes.
+
 ## 0.2.0
-- Adds `--nine` to **not** use the now included 9-patch support!
+- Adds `--no-nine` to **not** use the now included 9-patch support!
 - Adds fixes for some errors in Appcelerator Android splash specs
 
 ## 0.1.0

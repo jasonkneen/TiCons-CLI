@@ -17,7 +17,7 @@ program
   .option('-m, --min-dpi <dpi>', 'minimum density to generate, e.g. `160` or `mdpi` (Android)')
   .option('-M, --max-dpi <dpi>', 'maximum density to generate, e.g. `240` or `hdpi` (Android)')
   .option('-d, --output-dir <path>', 'directory to write to')
-  .option('-c, --classic', 'force use classic instead of Alloy paths')
+  .option('-a, --alloy', 'force Alloy paths, even if not detected')
   .option('-p, --platforms <platforms>', 'none to detect, `all` or some of: ' + constants.platforms.join(','))
   .option('-t, --trace', 'shows initialized config and actual imagemagick commands');
 
@@ -31,6 +31,7 @@ program.command('splashes [input]')
   .option('-l, --locale <code>', 'outputs to i18n folders')
   .option('-o, --orientation <orientation>', 'none to detect, `all` or one of: ' + constants.orientations.join(','))
   .option('-n, --no-nine', 'do NOT generate 9-patch images (Android)')
+  .option('-c, --no-crop', 'do NOT crop splashes but contain and fill')
   .option('-f, --no-fix', 'do NOT fix errors in Appcelerator specs')
   .action(splashes);
 

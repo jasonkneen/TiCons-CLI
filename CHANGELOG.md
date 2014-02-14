@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2
+- Adds xxhdpi splash screens.
+- Fizes `radius` not working.
+
 ## 0.3.1
 - Fixes locked orientation not detected correctly.
 - Fizes `ios` platform not being translated to spec filter correctly.

@@ -20,6 +20,7 @@ describe('icons', function() {
       ticons.icons({
         input: path.join(__dirname, 'icon.png'),
         outputDir: tmpDir,
+        radius: 18,
         alloy: true
       }, function(err, output) {
 

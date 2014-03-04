@@ -2,6 +2,7 @@
 
 ## 0.3.3
 - Adds icon for Google Play and iTunesConnect.
+- Adds new splash sizes for BlackBerry.
 
 ## 0.3.2
 - Adds xxhdpi splash screens.

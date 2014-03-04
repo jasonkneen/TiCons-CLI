@@ -104,7 +104,6 @@ If you use the `iTunesArtwork@2x` as input for Android and other platforms icons
 ## Roadmap
 Feel free to fork and contribute towards:
 
-- Add generating App Store and Google Play assets based on icon.
 - Add generating general assets in various densities based on retina or xhdpi.
 - Add generating HTML splash for Mobile Web.
 

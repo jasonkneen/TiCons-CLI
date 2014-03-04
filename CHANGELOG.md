@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.3
+- Adds icon for Google Play and iTunesConnect.
+
 ## 0.3.2
 - Adds xxhdpi splash screens.
 - Fizes `radius` not working.

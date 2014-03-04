@@ -29,6 +29,7 @@ describe('icons', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
+          "ios-iTunesConnect": tmpDir + "/iTunesConnect.png",
           "ios-appicon-60": tmpDir + "/app/assets/iphone/appicon-60.png",
           "ios-appicon@2x": tmpDir + "/app/assets/iphone/appicon@2x.png",
           "ios-appicon": tmpDir + "/app/assets/iphone/appicon.png",
@@ -41,6 +42,7 @@ describe('icons', function() {
           "ios-appicon-Small-40": tmpDir + "/app/assets/iphone/appicon-Small-40.png",
           "ios-appicon-76@2x": tmpDir + "/app/assets/iphone/appicon-76@2x.png",
           "ios-iTunesArtwork": tmpDir + "/app/assets/iphone/iTunesArtwork",
+          "android-GooglePlay": tmpDir + "/GooglePlay.png",
           "android-appicon-ldpi": tmpDir + "/platform/android/res/drawable-ldpi/appicon.png",
           "ios-appicon-Small-40@2x": tmpDir + "/app/assets/iphone/appicon-Small-40@2x.png",
           "ios-appicon-Small-50": tmpDir + "/app/assets/iphone/appicon-Small-50.png",

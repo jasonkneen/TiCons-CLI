@@ -50,6 +50,8 @@ describe('splashes', function() {
           "android-default-notlong-port-xhdpi": tmpDir + "/platform/android/res/drawable-port-xhdpi/splash.9.png",
           "android-default-notlong-port-xxhdpi": tmpDir + "/platform/android/res/drawable-port-xxhdpi/splash.9.png",
           "blackberry-splash-600x1024": tmpDir + "/app/assets/blackberry/splash-600x1024.png",
+          "blackberry-splash-720x720": tmpDir + "/app/assets/blackberry/splash-720x720.png",
+          "blackberry-splash-768x1280": tmpDir + "/app/assets/blackberry/splash-768x1280.png",
           "mobileweb-Default-Portrait-png": tmpDir + "/app/assets/mobileweb/apple_startup_images/Default-Portrait.png",
           "mobileweb-Default-Landscape-png": tmpDir + "/app/assets/mobileweb/apple_startup_images/Default-Landscape.png"
         }, _.identity));

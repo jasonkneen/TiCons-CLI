@@ -23,18 +23,6 @@ exports.icons = function(opts, callback) {
       return callback(err);
     }
 
-    // no input
-    if (!cfg.input) {
-      var def = path.join(cfg.outputDir, cfg.assetsDir, 'iphone', 'iTunesArtwork@2x');
-
-      // use default
-      if (fs.existsSync(def)) {
-        cfg.input = def;
-      } else {
-        return callback('missing required argument `input` or default: ' + def);
-      }
-    }
-
     // create tasks
     jobs.createTasks(cfg, function(err, tasks) {
 
@@ -69,18 +57,6 @@ exports.splashes = function(opts, callback) {
 
     if (err) {
       return callback(err);
-    }
-
-    // no input
-    if (!cfg.input) {
-      var def = path.join(cfg.outputDir, cfg.assetsDir, 'iphone', 'Default-568h@2x.png');
-
-      // use default
-      if (fs.existsSync(def)) {
-        cfg.input = def;
-      } else {
-        return callback('missing required argument `input` or default: ' + def);
-      }
     }
 
     // create tasks

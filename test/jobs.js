@@ -1,5 +1,6 @@
 var should = require('should'),
   _ = require('underscore'),
+  path = require('path'),
   jobs = require('../lib/jobs');
 
 describe('jobs', function() {
@@ -23,7 +24,7 @@ describe('jobs', function() {
         spec.should.be.an.Object;
         spec.should.be.eql({
           type: 'icon',
-          path: ':assets:/iphone/iTunesArtwork',
+          path: ':assets:' + path.normalize('/iphone/iTunesArtwork'),
           size: 512,
           height: 512,
           width: 512,
@@ -32,7 +33,7 @@ describe('jobs', function() {
           ],
           name: "ios-iTunesArtwork",
           dpi: 72,
-          output: "Resources/iphone/iTunesArtwork"
+          output: path.normalize("Resources/iphone/iTunesArtwork")
         });
 
         done();

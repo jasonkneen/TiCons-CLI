@@ -44,7 +44,13 @@ Hit `ticons -h` for full usage, but thanks to [Smart Defaults](#smart-defaults) 
      ```
      ~/myproject ticons splashes
      ```
-     
+
+- Detects if the CWD contains a classic or Alloy project, what platforms are targeted and then generates missing asset densities `iphone/images` as input. If both iOS and Android MDPI are targetted, `images` is used for both iOS and Android MDPI.
+
+     ```
+     ~/myproject ticons assets
+     ```
+          
 You can specify diferent input (`ticons icons myIcon.png`) and options to override the defaults for fine-tune the results to your liking.
 
 ### Module
@@ -100,10 +106,16 @@ By default, some errors in the Appcelerator specs related to iOS and Android spl
 ## Radius
 If you use the `iTunesArtwork@2x` as input for Android and other platforms icons, you might want to round the corners a bit as only iOS does this for you. Simply pass a percentage between `0` and `50` to `--radius` (`-r`). Seems like `18` is about what it was for iOS6.
 
+## Assets
+The new `assets` command is beta and assumes the following directories:
+
+- `iphone/images` for iOS retina.
+- `images` for iOS non-retina, Android MDPI and other platforms.
+- `android/images/res-*` for other Android DPI's.
+
 ## Roadmap
 Feel free to fork and contribute towards:
 
-- Add generating general assets in various densities based on retina or xhdpi.
 - Add generating HTML splash for Mobile Web.
 
 

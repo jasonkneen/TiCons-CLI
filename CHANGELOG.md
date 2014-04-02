@@ -1,12 +1,25 @@
 # Changelog
 
+## 0.5.0
+- Adds `assets` command to generate missing asset densities.
+
+## 0.4.0
+- No longer scales up when using `--no-crop`.
+- Fixes tests not working on Windows.
+
+## 0.3.5
+- Fixes `radius` not working (again).
+
+## 0.3.4
+- Fixes #6 when `splashes` was called with no input.
+
 ## 0.3.3
 - Adds icon for Google Play and iTunesConnect.
 - Adds new splash sizes for BlackBerry.
 
 ## 0.3.2
 - Adds xxhdpi splash screens.
-- Fizes `radius` not working.
+- Fixes `radius` not working.
 
 ## 0.3.1
 - Fixes locked orientation not detected correctly.

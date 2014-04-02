@@ -35,12 +35,33 @@ program.command('splashes [input]')
   .option('-f, --no-fix', 'do NOT fix errors in Appcelerator specs')
   .action(splashes);
 
+program.command('assets [input]')
+  .description('generate missing densities for input asset(s)')
+  .action(assets);
+
 program.parse(process.argv);
 
 if (program.args.length === 0 || typeof program.args[program.args.length - 1] === 'string') {
   notifier.update && notifier.notify();
 
   program.help();
+}
+
+function assets(input, env) {
+  notifier.update && notifier.notify();
+
+  var options = _filterOptions(env);
+
+  options.cli = true;
+  options.input = input;
+
+  ticons.assets(options, function(err, output) {
+    if (err) {
+      logger.error(err);
+    } else {
+      logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' assets');
+    }
+  });
 }
 
 function icons(input, env) {

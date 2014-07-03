@@ -21,7 +21,7 @@ As a dependency in your projects `package.json`:
 }
 ```
 
-TiCons requires [ImageMagick](http://www.imagemagick.org/) CLI tools to be installed. If you're on OS X you can use Homebrew:
+TiCons requires [ImageMagick](http://www.imagemagick.org/) CLI tools to be installed. If you're on OS X you can use the [Cactuslab installer](http://cactuslab.com/imagemagick/) or [Homebrew](http://brew.sh):
 
 ```
 brew install imagemagick
@@ -112,6 +112,8 @@ The new `assets` command is beta and assumes the following directories:
 - `iphone/images` for iOS retina.
 - `images` for iOS non-retina, Android MDPI and other platforms.
 - `android/images/res-*` for other Android DPI's.
+
+Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi` or retina images to generate the others, unless the target image is newer or a 9-patch version is found.
 
 ## Roadmap
 Feel free to fork and contribute towards:

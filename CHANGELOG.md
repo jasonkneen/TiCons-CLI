@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.2
+- Adds `xxxhdpi` density.
+- Adds support for defaulting to `xxxhdpi` or `xxhpdi` source for `assets` command.
+
+## 0.5.1
+- Fixes CLI not working with default input.
+
 ## 0.5.0
 - Adds `assets` command to generate missing asset densities.
 

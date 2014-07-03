@@ -50,10 +50,11 @@ describe('icons', function() {
           "android-appicon-mdpi": path.join(tmpDir,"/platform/android/res/drawable-mdpi/appicon.png"),
           "android-appicon": path.join(tmpDir,"/app/assets/android/appicon.png"),
           "android-appicon-hdpi": path.join(tmpDir,"/platform/android/res/drawable-hdpi/appicon.png"),
-          "android-appicon-xhdpi": path.join(tmpDir,"/platform/android/res/drawable-xhdpi/appicon.png"),
+          "android-appicon-xxxhdpi": path.join(tmpDir,"/platform/android/res/drawable-xxxhdpi/appicon.png"),
           "ios-iTunesArtwork@2x": path.join(tmpDir,"/app/assets/iphone/iTunesArtwork@2x"),
           "tizen-appicon": path.join(tmpDir,"/app/assets/tizen/appicon.png"),
           "android-appicon-xxhdpi": path.join(tmpDir,"/platform/android/res/drawable-xxhdpi/appicon.png"),
+          "android-appicon-xhdpi": path.join(tmpDir,"/platform/android/res/drawable-xhdpi/appicon.png"),
           "blackberry-appicon": path.join(tmpDir,"/app/assets/blackberry/appicon.png"),
           "mobileweb-appicon": path.join(tmpDir,"/app/assets/mobileweb/appicon.png")
         }, _.identity));

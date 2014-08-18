@@ -71,20 +71,6 @@ exports.splashes = function(opts, callback) {
         logger.info('Starting ' + _.size(tasks) + ' jobs');
       }
 
-      // write theme.xml
-      if (cfg.nine && _.indexOf(cfg.platforms, 'android') !== -1) {
-        var themePath = path.join(cfg.outputDir, 'platform', 'android', 'res', 'values', 'theme.xml');
-
-        if (!fs.existsSync(themePath)) {
-
-          if (cfg.cli) {
-            logger.info('Creating theme to enable 9-Patch: ' + themePath.cyan);
-          }
-
-          fs.createFileSync(themePath, constants.theme);
-        }
-      }
-
       // run tasks
       async.parallel(tasks, callback);
 

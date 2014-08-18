@@ -84,12 +84,12 @@ If the `outputDir` (or `-d` or CWD if missing) contains a project, *TiCons* will
 In the CLI, you can add the `trace` (`-t`) option to see exactly what configuration is used based on your options and the smart defaults.
 
 ## Splashes & 9-Patch
-By default *TiCons* generated [9-Patch splashes](http://www.tidev.io/2014/02/12/android-splash-screens-using-9-patch-images/) for Android. You can disable this using `--no-nine` (`-n`) option and as an alternative disable cropping as well using `--no-crop` (`-c`) to contain and fill splash screen instead.
+By default *TiCons* generated [9-Patch splashes](http://docs.appcelerator.com/titanium/latest/#!/guide/Icons_and_Splash_Screens-section-29004897_IconsandSplashScreens-Androidsplashscreenconsiderations) for Android. You can disable this using `--no-nine` (`-n`) option and as an alternative disable cropping as well using `--no-crop` (`-c`) to contain and fill splash screen instead.
 
 ### 9-Patch best practice
-Understand that *TiCons* will fit your input image inside the `not-long-x` dimensions and then add 9-Patch black pixels to indicate that only the outer most line of pixels on each side should be stretched. For best results use a square image of 1600x1600 pixels that includes the minimal amount of padding, making sure that the outer most pixels are all of the same color.
+Understand that *TiCons* will fit your input image inside the `not-long-port-?` dimensions and then add 9-Patch black pixels to indicate that only the outer most line of pixels on each side should be stretched. For best results use a square image of 1600x1600 pixels that includes the minimal amount of padding, making sure that the outer most pixels are all of the same color.
 
-The required `platform/android/res/values/theme.xml` will be created if you don't have it already. Make sure the assets `android` directory does not contain any old non-9-Patch splashes, because else they will take precendece.
+Since 0.6.0 the generated images are named `background.9.png` so that if you don't use a custom theme and build against Titanium 3.3.0.GA or later the splash will automatically be loaded. If you're using a custom theme, please [see the docs](http://docs.appcelerator.com/titanium/latest/#!/guide/Icons_and_Splash_Screens-section-29004897_IconsandSplashScreens-Androidsplashscreenconsiderations) on how to use the generated splash background. Also make sure the assets `android` directory does not contain any old splashes, because else they will take precendece.
 
 ### Cropping best practice
 For best results with 9-Patch disabled use a 2048x2048 image that has its main artwork in the center 1024x1024 pixels. Anything outside of that box might be cropped depending on the orientation and ratio of the target splashes.
@@ -119,7 +119,6 @@ Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi
 Feel free to fork and contribute towards:
 
 - Add generating HTML splash for Mobile Web.
-
 
 ## Tests [![Travis](http://img.shields.io/travis/FokkeZB/TiCons-CLI.png)](https://travis-ci.org/FokkeZB/TiCons-CLI)
 

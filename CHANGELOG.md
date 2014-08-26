@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+- Adds support for running `ticons assets` in the root of a widget.
+
+## 0.6.0
+- Renamed `splash.9.png` to `background.9.png` to be compatible with Titanium 3.3.0
+- No longer generates theme.xml to be compatible with Titanium 3.3.0
+
 ## 0.5.2
 - Adds `xxxhdpi` density.
 - Adds support for defaulting to `xxxhdpi` or `xxhpdi` source for `assets` command.

@@ -107,13 +107,16 @@ By default, some errors in the Appcelerator specs related to iOS and Android spl
 If you use the `iTunesArtwork@2x` as input for Android and other platforms icons, you might want to round the corners a bit as only iOS does this for you. Simply pass a percentage between `0` and `50` to `--radius` (`-r`). Seems like `18` is about what it was for iOS6.
 
 ## Assets
-The new `assets` command is beta and assumes the following directories:
+The `assets` command is assumes the following directories:
 
 - `iphone/images` for iOS retina.
 - `images` for iOS non-retina, Android MDPI and other platforms.
 - `android/images/res-*` for other Android DPI's.
 
 Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi` or retina images to generate the others, unless the target image is newer or a 9-patch version is found.
+
+### Widgets
+You can also run `ticons assets` in a widget root, which will cause TiCons to read the target platforms from `widget.json` instead of `tiapp.xml`.
 
 ## Roadmap
 Feel free to fork and contribute towards:

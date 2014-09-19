@@ -109,11 +109,11 @@ If you use the `iTunesArtwork@2x` as input for Android and other platforms icons
 ## Assets
 The `assets` command is assumes the following directories:
 
-- `iphone/images` for iOS retina.
+- `iphone/images` for iOS Retina (`@2x`) and HD Retina (`@3x`).
 - `images` for iOS non-retina, Android MDPI and other platforms.
-- `android/images/res-*` for other Android DPI's.
+- `android/images/res-*` for other Android densities.
 
-Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi` or retina images to generate the others, unless the target image is newer or a 9-patch version is found.
+Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi` or (HD) Retina images to generate the others, unless the target image is newer or a 9-patch version is found.
 
 ### Widgets
 You can also run `ticons assets` in a widget root, which will cause TiCons to read the target platforms from `widget.json` instead of `tiapp.xml`.

@@ -102,7 +102,7 @@ exports.assets = function(opts, callback) {
 
       _.each(specs, function(spec, name) {
 
-        if (cfg.input.substr(0, spec.output.length) === spec.output) {
+        if (!inputSpec && cfg.input.substr(0, spec.output.length) === spec.output) {
           inputSpec = spec;
 
         } else {
@@ -116,7 +116,6 @@ exports.assets = function(opts, callback) {
       }
 
       inputSpec.outputLength = inputSpec.output.length;
-      inputSpec.retina = inputSpec.name === 'ios-images@2x';
 
       if (outputSpecs['android-res-mdpi'] && outputSpecs['ios-images']) {
         delete outputSpecs['android-res-mdpi'];
@@ -131,7 +130,7 @@ exports.assets = function(opts, callback) {
           recursive: true,
           prependDir: true,
           filter: function(itemPath, itemStat) {
-            return itemPath.match(/\.(png|jpg)$/);
+            return itemPath.match(new RegExp((inputSpec.suffix || '') + '\.(png|jpg)$'));
           }
         });
 
@@ -149,12 +148,12 @@ exports.assets = function(opts, callback) {
         var sourceTime = fs.statSync(source).mtime;
         var relativePath = source.substr(inputSpec.outputLength);
 
-        if (inputSpec.retina) {
-          relativePath = relativePath.replace('@2x', '');
-        }
-
-        _.each(outputSpecs, function(spec) {
+        _.each(outputSpecs, function(spec, n) {
           var target = path.join(spec.output, relativePath);
+
+          if (inputSpec.suffix) {
+            target = target.replace(inputSpec.suffix, spec.suffix || '');
+          }
 
           if (!fs.existsSync(target.replace(/(\.png)$/, '.9$1')) && (!fs.existsSync(target) || (sourceTime > fs.statSync(target).mtime))) {
 
@@ -181,7 +180,7 @@ exports.assets = function(opts, callback) {
               var convert = im(source);
 
               // resize
-              convert. in ('-resize', Math.round((spec.dpi / inputSpec.dpi) * 100) + '%');
+              convert.in('-resize', Math.round((spec.dpi / inputSpec.dpi) * 100) + '%');
 
               convert.write(target, function(err) {
 

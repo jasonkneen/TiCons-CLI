@@ -39,7 +39,7 @@ Hit `ticons -h` for full usage, but thanks to [Smart Defaults](#smart-defaults) 
      ~/myproject $ ticons icons
      ```
 
-- Detects if the CWD contains a classic or Alloy project, what platforms are targeted, if the app is locked to one orientation and then generates required splashes using `iphone/Default@2x.png` as input. If Android is targetted, 9-Patch images will be generated and the required `theme.xml` created for you if missing.
+- Detects if the CWD contains a classic or Alloy project, what platforms are targeted, if the app is locked to one orientation and then generates required splashes using `Default-Portrait-736h@3x.png` as input. If Android is targetted, 9-Patch images will be generated and the required `theme.xml` created for you if missing.
 
      ```
      ~/myproject ticons splashes

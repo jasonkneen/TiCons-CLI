@@ -14,7 +14,8 @@ describe('jobs', function() {
     it('pass back an object with `ios-iTunesArtwork` spec', function(done) {
 
       jobs.getSpec('ios-iTunesArtwork', {
-        outputDir: '.'
+        outputDir: '.',
+        input: path.join(__dirname, 'splash.png'),
       }, function(err, spec) {
 
         if (err) {
@@ -52,6 +53,7 @@ describe('jobs', function() {
 
       var specs = jobs.getSpecs({
         outputDir: '.',
+        input: path.join(__dirname, 'splash.png'),
         platforms: ['ipad', 'android']
       }, function(err, specs) {
 
@@ -88,7 +90,8 @@ describe('jobs', function() {
     it('pass back a function', function(done) {
 
       jobs.createTask('ios-iTunesArtwork', {
-        outputDir: '.'
+        outputDir: '.',
+        input: path.join(__dirname, 'splash.png'),
       }, function(err, task) {
 
         if (err) {
@@ -113,6 +116,7 @@ describe('jobs', function() {
 
       jobs.createTasks({
         outputDir: '.',
+        input: path.join(__dirname, 'splash.png'),
         ios: true
       }, function(err, tasks) {
 

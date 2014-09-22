@@ -83,27 +83,33 @@ If the `outputDir` (or `-d` or CWD if missing) contains a project, *TiCons* will
 
 In the CLI, you can add the `trace` (`-t`) option to see exactly what configuration is used based on your options and the smart defaults.
 
-## Splashes & 9-Patch
-By default *TiCons* generated [9-Patch splashes](http://docs.appcelerator.com/titanium/latest/#!/guide/Icons_and_Splash_Screens-section-29004897_IconsandSplashScreens-Androidsplashscreenconsiderations) for Android. You can disable this using `--no-nine` (`-n`) option and as an alternative disable cropping as well using `--no-crop` (`-c`) to contain and fill splash screen instead.
+## Splashes
 
-### 9-Patch best practice
+### 9-Patch
+By default *TiCons* generated [9-Patch splashes](http://docs.appcelerator.com/titanium/latest/#!/guide/Icons_and_Splash_Screens-section-29004897_IconsandSplashScreens-Androidsplashscreenconsiderations) for Android. You can disable this using `--no-nine` (`-n`) option.
+
 Understand that *TiCons* will fit your input image inside the `not-long-port-?` dimensions and then add 9-Patch black pixels to indicate that only the outer most line of pixels on each side should be stretched. For best results use a square image of 1600x1600 pixels that includes the minimal amount of padding, making sure that the outer most pixels are all of the same color.
 
 Since 0.6.0 the generated images are named `background.9.png` so that if you don't use a custom theme and build against Titanium 3.3.0.GA or later the splash will automatically be loaded. If you're using a custom theme, please [see the docs](http://docs.appcelerator.com/titanium/latest/#!/guide/Icons_and_Splash_Screens-section-29004897_IconsandSplashScreens-Androidsplashscreenconsiderations) on how to use the generated splash background. Also make sure the assets `android` directory does not contain any old splashes, because else they will take precendece.
 
-### Cropping best practice
-For best results with 9-Patch disabled use a 2048x2048 image that has its main artwork in the center 1024x1024 pixels. Anything outside of that box might be cropped depending on the orientation and ratio of the target splashes.
+### Cropping
+By default on all platforms and on all with `--no-nine`, the input image will be first resized to cover the target dimension and then cropped to fit exactly. For best results use a 2208x2208 image that has its main artwork in the center 1100x1100 pixels. Anything outside of that box might be cropped depending on the width/height ratio of the target splashes.
 
-### Filling best practive
-When cropping is disabled using `--no-crop` (`-c`) the input image will be resized to fit instead of cover the target dimension. The remaining area is then filled by stretching the outer most line of pixels on each side, basically simulating 9-Patch, but then for all platforms. For best results, see the best practice for 9-Patch and use 2048x2048 if you support iPad.
+### Containing
+Since 0.10.0 if you give `--width <width>` and `--height <height>` then TiCons will try not to crop that area, taken from the centre of the input image. This will let you *protect* the main content (logo) of the image. Depending on the size of your input image, it might not be possible to both contain this content as well as fit in the input image. In that case, it will give a warning telling you what the size of the input image needs to be and then continue to still crop as usual.
 
-## Locale
+### Filling
+Use `--no-crop` (`-c`) to resize the input image to fit instead of cover the target dimension. The remaining area is then filled by repeating the outer most lines of pixels on each side, basically simulating 9-Patch, but then for all platforms. For best results, see the best practice for 9-Patch and use an image of at least 2208x2208 pixels.
+
+### Locale
 You can use the `locale` (`-l`) option to specify a 2-letter locale. Only splashes supporting locale paths will be generated when you use this option.
 
-## Fix or not to Fix
+### Fix or not to Fix
 By default, some errors in the Appcelerator specs related to iOS and Android splash screen dimensions are fixed. Use `-no-fix` to disable this.
 
-## Radius
+## Icons
+
+### Radius
 If you use the `iTunesArtwork@2x` as input for Android and other platforms icons, you might want to round the corners a bit as only iOS does this for you. Simply pass a percentage between `0` and `50` to `--radius` (`-r`). Seems like `18` is about what it was for iOS6.
 
 ## Assets
@@ -115,7 +121,7 @@ The `assets` command is assumes the following directories:
 
 Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi` or (HD) Retina images to generate the others, unless the target image is newer or a 9-patch version is found.
 
-### Widgets
+## Widgets
 You can also run `ticons assets` in a widget root, which will cause TiCons to read the target platforms from `widget.json` instead of `tiapp.xml`.
 
 ## Roadmap

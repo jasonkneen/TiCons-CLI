@@ -39,6 +39,7 @@ program.command('splashes [input]')
 
 program.command('assets [input]')
   .description('generate missing densities for input asset(s)')
+  .option('--asuffix <suffix>', 'force a suffix')
   .action(assets);
 
 program.parse(process.argv);

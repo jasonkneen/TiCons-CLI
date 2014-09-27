@@ -119,7 +119,9 @@ The `assets` command is assumes the following directories:
 - `images` for iOS non-retina, Android MDPI and other platforms.
 - `android/images/res-*` for other Android densities.
 
-Just run `ticons assets` in your project root and it will use `xxxhdpi`, `xxhdpi` or (HD) Retina images to generate the others, unless the target image is newer or a 9-patch version is found.
+Just run `ticons assets` in your project root and it will use (HD) Retina images or Android `xxxhdpi` or `xxhdpi` images to generate the others, unless the target image is newer, a 9-patch version is found or the target dpi is higher then the input.
+
+You can also point to a specific image or directory by adding an argument like `ticons assets Resources/images/iphone`. TiCons will try to determine the input dpi based on the location:
 
 ## Widgets
 You can also run `ticons assets` in a widget root, which will cause TiCons to read the target platforms from `widget.json` instead of `tiapp.xml`.
@@ -128,6 +130,7 @@ You can also run `ticons assets` in a widget root, which will cause TiCons to re
 Feel free to fork and contribute towards:
 
 - Add generating HTML splash for Mobile Web.
+- Don't generate assets if a subtype (`568h`) is found.
 
 ## Tests [![Travis](http://img.shields.io/travis/FokkeZB/TiCons-CLI.png)](https://travis-ci.org/FokkeZB/TiCons-CLI)
 

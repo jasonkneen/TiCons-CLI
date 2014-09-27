@@ -96,6 +96,9 @@ exports.assets = function(opts, callback) {
       return callback(err);
     }
 
+    var stat = fs.statSync(cfg.input);
+    var files = [];
+
     jobs.getSpecs(cfg, function(err, specs) {
       var outputSpecs = {};
       var inputSpec;
@@ -103,11 +106,41 @@ exports.assets = function(opts, callback) {
       _.each(specs, function(spec, name) {
 
         if (!inputSpec && cfg.input.substr(0, spec.output.length) === spec.output) {
-          inputSpec = spec;
 
-        } else {
-          outputSpecs[name] = spec;
+          if (spec.suffix) {
+            var re = new RegExp((spec.suffix || '') + '\.(png|jpg)$');
+
+            if (stat.isFile()) {
+
+              if (cfg.input.match(re)) {
+                inputSpec = spec;
+                return;
+              }
+
+            } else {
+
+              var suffixFiles = fs.listFilesSync(cfg.input, {
+                recursive: true,
+                prependDir: true,
+                filter: function(itemPath, itemStat) {
+                  return itemPath.match(re);
+                }
+              });
+
+              if (suffixFiles.length > 0) {
+                inputSpec = spec;
+                return;
+              }
+
+            }
+
+          } else {
+            inputSpec = spec;
+            return;
+          }
         }
+
+        outputSpecs[name] = spec;
 
       });
 
@@ -120,9 +153,6 @@ exports.assets = function(opts, callback) {
       if (outputSpecs['android-res-mdpi'] && outputSpecs['ios-images']) {
         delete outputSpecs['android-res-mdpi'];
       }
-
-      var stat = fs.statSync(cfg.input);
-      var files = [];
 
       if (stat.isDirectory()) {
 
@@ -149,10 +179,20 @@ exports.assets = function(opts, callback) {
         var relativePath = source.substr(inputSpec.outputLength);
 
         _.each(outputSpecs, function(spec, n) {
+
+          if (spec.dpi > inputSpec.dpi) {
+            logger.info('Skipped higher dpi: ' + spec.name.cyan);
+
+            return;
+          }
+
           var target = path.join(spec.output, relativePath);
 
           if (inputSpec.suffix) {
             target = target.replace(inputSpec.suffix, spec.suffix || '');
+
+          } else if (spec.suffix) {
+            target = target.replace(/(\.(png|jpg)+)$/i, spec.suffix + '$1');
           }
 
           if (!fs.existsSync(target.replace(/(\.png)$/, '.9$1')) && (!fs.existsSync(target) || (sourceTime > fs.statSync(target).mtime))) {

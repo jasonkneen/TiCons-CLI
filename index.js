@@ -160,7 +160,7 @@ exports.assets = function(opts, callback) {
           recursive: true,
           prependDir: true,
           filter: function(itemPath, itemStat) {
-            return itemPath.match(new RegExp((inputSpec.suffix || '') + '\.(png|jpg)$'));
+            return itemPath.match(new RegExp((opts.asuffix || inputSpec.suffix || '') + '\.(png|jpg)$'));
           }
         });
 

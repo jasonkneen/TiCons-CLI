@@ -104,7 +104,6 @@ exports.assets = function(opts, callback) {
 
         if (!inputSpec && cfg.input.substr(0, spec.output.length) === spec.output) {
           inputSpec = spec;
-
         } else {
           outputSpecs[name] = spec;
         }
@@ -130,7 +129,18 @@ exports.assets = function(opts, callback) {
           recursive: true,
           prependDir: true,
           filter: function(itemPath, itemStat) {
-            return itemPath.match(new RegExp((inputSpec.suffix || '') + '\.(png|jpg)$'));
+            for (;;) {
+              if (new RegExp( (inputSpec.suffix || '') + '\.(png|jpg)$' ).test(itemPath)) {
+                return true;
+              }
+
+              if (inputSpec.fallback) {
+                logger.debug('Fallbacking to '+inputSpec.fallback);
+                inputSpec = specs[inputSpec.fallback];
+              } else {
+                return false;
+              }
+            }
           }
         });
 

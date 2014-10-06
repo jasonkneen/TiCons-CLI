@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.2
+- Fixes wrong filename for iPhone 6 splash image.
+
+## 0.10.1
+- Fixes generating assets for projects with no `@3x` files.
+
+## 0.10.0
+- Adds `weight` and `height` option to protect the centre area of the splash input from being cropped.
+
+## 0.9.0
+- Adds support for generating (from) `@3x` assets.
+
+## 0.8.0
+- Adds icons & splashes for iPhone 6 and iPhone 6 Plus.
+
 ## 0.7.0
 - Adds support for running `ticons assets` in the root of a widget.
 

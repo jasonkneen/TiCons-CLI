@@ -127,10 +127,7 @@ You can also point to a specific image or directory by adding an argument like `
 You can also run `ticons assets` in a widget root, which will cause TiCons to read the target platforms from `widget.json` instead of `tiapp.xml`.
 
 ## Roadmap
-Feel free to fork and contribute towards:
-
-- Add generating HTML splash for Mobile Web.
-- Don't generate assets if a subtype (`568h`) is found.
+Feel free to fork and contribute towards resolving [requests](https://github.com/fokkezb/ticons-cli/issues).
 
 ## Tests [![Travis](http://img.shields.io/travis/FokkeZB/TiCons-CLI.png)](https://travis-ci.org/FokkeZB/TiCons-CLI)
 

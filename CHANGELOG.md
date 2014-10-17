@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.11.2
+## 0.11.0
 - Adds Google Play Feature graphic to the `splashes` command.
 
 ## 0.10.2

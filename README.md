@@ -62,7 +62,7 @@ var ticons = require('ticons');
 ticons.icons({
 	input: 'icon.png',
 	outputDir: 'foo',
-	targets: ['ipad','android'],
+	platforms: ['ipad','android'],
 	classic: true
 }, function (err, output) {
 	

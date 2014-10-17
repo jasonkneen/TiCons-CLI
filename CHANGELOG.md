@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.11.2
+- Adds Google Play Feature graphic to the `splashes` command.
+
 ## 0.10.2
 - Fixes wrong filename for iPhone 6 splash image.
 

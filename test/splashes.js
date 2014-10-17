@@ -28,6 +28,7 @@ describe('splashes', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
+          "android-GooglePlayFeature": path.join(tmpDir,"/GooglePlayFeature.png"),
           "ios-Default": path.join(tmpDir,"/app/assets/iphone/Default.png"),
           "ios-Default@2x": path.join(tmpDir,"/app/assets/iphone/Default@2x.png"),
           "ios-Default-568h@2x": path.join(tmpDir,"/app/assets/iphone/Default-568h@2x.png"),

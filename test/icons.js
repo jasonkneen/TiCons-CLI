@@ -58,7 +58,14 @@ describe('icons', function() {
           "android-appicon-xxhdpi": path.join(tmpDir,"/platform/android/res/drawable-xxhdpi/appicon.png"),
           "android-appicon-xhdpi": path.join(tmpDir,"/platform/android/res/drawable-xhdpi/appicon.png"),
           "blackberry-appicon": path.join(tmpDir,"/app/assets/blackberry/appicon.png"),
-          "mobileweb-appicon": path.join(tmpDir,"/app/assets/mobileweb/appicon.png")
+          "mobileweb-appicon": path.join(tmpDir,"/app/assets/mobileweb/appicon.png"),
+          "apple-watch-44x44@2x": path.join(tmpDir,"/apple-watch/44x44@2x.png"),
+          "apple-watch-86x86@2x": path.join(tmpDir,"/apple-watch/86x86@2x.png"),
+          "apple-watch-29x29@2x": path.join(tmpDir,"/apple-watch/29x29@2x.png"),
+          "apple-watch-24x24@2x": path.join(tmpDir,"/apple-watch/24x24@2x.png"),
+          "apple-watch-98x98@2x": path.join(tmpDir,"/apple-watch/98x98@2x.png"),
+          "apple-watch-29x29@3x": path.join(tmpDir,"/apple-watch/29x29@3x.png"),
+          "apple-watch-27.5x27.5@2x": path.join(tmpDir,"/apple-watch/27.5x27.5@2x.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {

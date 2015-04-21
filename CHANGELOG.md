@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.12.0
+- Adds `-L` / `--label` to draw the name of the icon/splash on it for debugging
+- Adds Apple Watch icons (`-p apple-watch`)
+- Changes default min dpi to MDPI and max to XXHDPI
+
 ## 0.11.0
 - Adds Google Play Feature graphic to the `splashes` command.
 

@@ -19,6 +19,7 @@ program
   .option('-d, --output-dir <path>', 'directory to write to')
   .option('-a, --alloy', 'force Alloy paths, even if not detected')
   .option('-p, --platforms <platforms>', 'none to detect, `all` or some of: ' + constants.platforms.join(','))
+  .option('-L, --label', 'draws the spec-name on each image for debugging')
   .option('-t, --trace', 'shows initialized config and actual imagemagick commands');
 
 program.command('icons [input]')

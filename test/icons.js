@@ -19,6 +19,8 @@ describe('icons', function() {
 
       ticons.icons({
         input: path.join(__dirname, 'icon.png'),
+        minDpi: 120,
+        maxDpi: 640,
         outputDir: tmpDir,
         radius: 18,
         alloy: true

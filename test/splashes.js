@@ -19,6 +19,8 @@ describe('splashes', function() {
 
       ticons.splashes({
         input: path.join(__dirname, 'splash.png'),
+        minDpi: 120,
+        maxDpi: 640,
         outputDir: tmpDir,
         alloy: true
       }, function(err, output) {

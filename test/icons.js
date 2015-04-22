@@ -61,6 +61,7 @@ describe('icons', function() {
           "android-appicon-xhdpi": path.join(tmpDir,"/platform/android/res/drawable-xhdpi/appicon.png"),
           "blackberry-appicon": path.join(tmpDir,"/app/assets/blackberry/appicon.png"),
           "mobileweb-appicon": path.join(tmpDir,"/app/assets/mobileweb/appicon.png"),
+          "apple-watch-40x40@2x": path.join(tmpDir,"/apple-watch/40x40@2x.png"),
           "apple-watch-44x44@2x": path.join(tmpDir,"/apple-watch/44x44@2x.png"),
           "apple-watch-86x86@2x": path.join(tmpDir,"/apple-watch/86x86@2x.png"),
           "apple-watch-29x29@2x": path.join(tmpDir,"/apple-watch/29x29@2x.png"),

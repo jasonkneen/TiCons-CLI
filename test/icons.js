@@ -22,7 +22,6 @@ describe('icons', function() {
         minDpi: 120,
         maxDpi: 640,
         outputDir: tmpDir,
-        trace: true,
         radius: 18,
         alloy: true
       }, function(err, output) {

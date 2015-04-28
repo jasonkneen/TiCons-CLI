@@ -1,6 +1,9 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    cfg: {
+      test: grunt.option('test') || '*'
+    },
     mochaTest: {
       options: {
         require: ['should'],
@@ -8,7 +11,7 @@ module.exports = function(grunt) {
         ignoreLeaks: false,
         reporter: 'spec'
       },
-      src: ['test/*.js']
+      src: ['test/<%= cfg.test %>.js']
     }
   });
 

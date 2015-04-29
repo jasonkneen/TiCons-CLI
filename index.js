@@ -39,7 +39,7 @@ exports.icons = function (opts, callback) {
 			}
 
 			// run tasks
-			async.parallel(tasks, callback);
+			async.series(tasks, callback);
 
 		});
 
@@ -75,7 +75,7 @@ exports.splashes = function (opts, callback) {
 			}
 
 			// run tasks
-			async.parallel(tasks, callback);
+			async.series(tasks, callback);
 
 		});
 

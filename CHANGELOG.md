@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.12.4
+- Optimize code: strict, async (except assets)
+
 ## 0.12.1
 - Fixes alpha channel removal failing on some Imagick versions
 - Fixes new min/max defaults to fail test

@@ -11,14 +11,16 @@ var _ = require('underscore'),
 	constants = require('./lib/constants'),
 	logger = require('./lib/logger');
 
-var notifier = updateNotifier();
+var notifier = updateNotifier({
+	pkg: pkg
+});
 
 program
 	.version(pkg.version, '-v, --version')
 	.description(pkg.description)
 	.usage('command <args> [options]')
-	.option('-m, --min-dpi <dpi>', 'minimum density to generate, e.g. `160` or `mdpi` (Android)')
-	.option('-M, --max-dpi <dpi>', 'maximum density to generate, e.g. `240` or `hdpi` (Android)')
+	.option('-m, --min-dpi <dpi>', 'minimum density to generate (default: `160` or `mdpi`)')
+	.option('-M, --max-dpi <dpi>', 'maximum density to generate, (default e.g. `480` or `xxhdpi`)')
 	.option('-d, --output-dir <path>', 'directory to write to')
 	.option('-a, --alloy', 'force Alloy paths, even if not detected')
 	.option('-p, --platforms <platforms>', 'none to detect, `all` or some of: ' + constants.platforms.join(','))

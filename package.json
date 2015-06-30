@@ -29,7 +29,10 @@
     "ticons": "./cli.js"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "patch": "grunt test && npm version patch -m 'bump version' && npm publish && git push && git push --tags",
+    "minor": "grunt test && npm version minor -m 'bump version' && npm publish && git push && git push --tags",
+    "major": "grunt test && npm version major -m 'bump version' && npm publish && git push && git push --tags"
   },
   "directories": {
     "lib": "./lib"

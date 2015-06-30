@@ -30,7 +30,7 @@ describe('splashes', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
-          "android-GooglePlayFeature": path.join(tmpDir,"/GooglePlayFeature.png"),
+          "android-MarketplaceArtworkFeature": path.join(tmpDir,"/MarketplaceArtworkFeature.png"),
           "ios-Default": path.join(tmpDir,"/app/assets/iphone/Default.png"),
           "ios-Default@2x": path.join(tmpDir,"/app/assets/iphone/Default@2x.png"),
           "ios-Default-568h@2x": path.join(tmpDir,"/app/assets/iphone/Default-568h@2x.png"),
@@ -55,7 +55,8 @@ describe('splashes', function() {
           "blackberry-splash-720x720": path.join(tmpDir,"/app/assets/blackberry/splash-720x720.png"),
           "blackberry-splash-768x1280": path.join(tmpDir,"/app/assets/blackberry/splash-768x1280.png"),
           "mobileweb-Default-Portrait-png": path.join(tmpDir,"/app/assets/mobileweb/apple_startup_images/Default-Portrait.png"),
-          "mobileweb-Default-Landscape-png": path.join(tmpDir,"/app/assets/mobileweb/apple_startup_images/Default-Landscape.png")
+          "mobileweb-Default-Landscape-png": path.join(tmpDir,"/app/assets/mobileweb/apple_startup_images/Default-Landscape.png"),
+          "windows-SplashScreen": path.join(tmpDir,"/app/assets/windows/SplashScreen.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {

@@ -46,7 +46,7 @@ describe('icons', function() {
           "ios-appicon-Small-40": path.join(tmpDir,"/app/assets/iphone/appicon-Small-40.png"),
           "ios-appicon-76@2x": path.join(tmpDir,"/app/assets/iphone/appicon-76@2x.png"),
           "ios-iTunesArtwork": path.join(tmpDir,"/app/assets/iphone/iTunesArtwork"),
-          "android-GooglePlay": path.join(tmpDir,"/GooglePlay.png"),
+          "android-MarketplaceArtwork": path.join(tmpDir,"/MarketplaceArtwork.png"),
           "android-appicon-ldpi": path.join(tmpDir,"/platform/android/res/drawable-ldpi/appicon.png"),
           "ios-appicon-Small-40@2x": path.join(tmpDir,"/app/assets/iphone/appicon-Small-40@2x.png"),
           "ios-appicon-Small-50": path.join(tmpDir,"/app/assets/iphone/appicon-Small-50.png"),
@@ -68,7 +68,10 @@ describe('icons', function() {
           "apple-watch-24x24@2x": path.join(tmpDir,"/apple-watch/24x24@2x.png"),
           "apple-watch-98x98@2x": path.join(tmpDir,"/apple-watch/98x98@2x.png"),
           "apple-watch-29x29@3x": path.join(tmpDir,"/apple-watch/29x29@3x.png"),
-          "apple-watch-27.5x27.5@2x": path.join(tmpDir,"/apple-watch/27.5x27.5@2x.png")
+          "apple-watch-27.5x27.5@2x": path.join(tmpDir,"/apple-watch/27.5x27.5@2x.png"),
+          "windows-Logo":path.join(tmpDir,"/app/assets/windows/Logo.png"),
+          "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png"),
+          "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {

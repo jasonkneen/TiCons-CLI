@@ -71,6 +71,7 @@ describe('icons', function() {
           "apple-watch-27.5x27.5@2x": path.join(tmpDir,"/apple-watch/27.5x27.5@2x.png"),
           "windows-Logo":path.join(tmpDir,"/app/assets/windows/Logo.png"),
           "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png"),
+          "windows-Square44x44Logo.scale-100":path.join(tmpDir,"/app/assets/windows/Square44x44Logo.scale-100.png"),
           "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png")
         }, _.identity));
 

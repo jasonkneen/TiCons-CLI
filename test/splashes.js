@@ -56,7 +56,8 @@ describe('splashes', function() {
           "blackberry-splash-768x1280": path.join(tmpDir,"/app/assets/blackberry/splash-768x1280.png"),
           "mobileweb-Default-Portrait-png": path.join(tmpDir,"/app/assets/mobileweb/apple_startup_images/Default-Portrait.png"),
           "mobileweb-Default-Landscape-png": path.join(tmpDir,"/app/assets/mobileweb/apple_startup_images/Default-Landscape.png"),
-          "windows-SplashScreen": path.join(tmpDir,"/app/assets/windows/SplashScreen.png")
+          "windows-SplashScreen": path.join(tmpDir,"/app/assets/windows/SplashScreen.png"),
+          "windows-SplashScreen.scale-240": path.join(tmpDir,"/app/assets/windows/SplashScreen.scale-240.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {

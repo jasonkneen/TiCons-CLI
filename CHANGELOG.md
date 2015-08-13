@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.13.2
+- Adds clear error when ImageMagick is missing
+
+## 0.13.1
+- Adds missing Windows assets
+
+## 0.13.0
+- Adds Windows assets
+- Renames Google Play assets
+
+## 0.12.7/8
+- Adds missing padding box in nine-patch files, causing errors on Android 5.x
+
+## 0.12.6
+- Fixes update notify bug
+
+## 0.12.5
+- Fixes nine-patch images being flattened
+
 ## 0.12.4
 - Optimize code: strict, async (except assets)
 

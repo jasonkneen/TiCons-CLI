@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.13.3
+- Do not fill MarketplaceArtworkFeature.png unless crop is disabled
+
 ## 0.13.2
 - Adds clear error when ImageMagick is missing
 

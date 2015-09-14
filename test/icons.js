@@ -31,8 +31,7 @@ describe('icons', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
-          "ios-iTunesConnect": path.join(tmpDir,"/iTunesConnect.png"),
-          "ios-appicon": path.join(tmpDir,"/app/assets/iphone/appicon.png"),
+          "ios-DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
           "ios-iTunesArtwork": path.join(tmpDir,"/app/assets/iphone/iTunesArtwork"),
           "android-MarketplaceArtwork": path.join(tmpDir,"/MarketplaceArtwork.png"),
           "android-appicon-ldpi": path.join(tmpDir,"/platform/android/res/drawable-ldpi/appicon.png"),
@@ -87,7 +86,7 @@ describe('icons', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
-          "ios-iTunesConnect": path.join(tmpDir,"/iTunesConnect.png"),
+          "ios-DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
           "ios-appicon-60": path.join(tmpDir,"/app/assets/iphone/appicon-60.png"),
           "ios-appicon@2x": path.join(tmpDir,"/app/assets/iphone/appicon@2x.png"),
           "ios-appicon": path.join(tmpDir,"/app/assets/iphone/appicon.png"),

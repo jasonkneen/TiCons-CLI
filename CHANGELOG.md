@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.14.4
+- Try `DefaultIcon.png` as default input
+
+## 0.14.3
+- Fixes #35
+
+## 0.14.2
+- Support `DefaultIcon.png` for Ti 5.0.0.GA to replace `iTunesConnect.png`
+
+## 0.14.1
+- Fixes #37
+
+## 0.14.0
+- Update Apple Watch icons
+- Add `sdk-version` option for big `appicon.png` in Ti 5.0.0.RC
+
 ## 0.13.3
 - Do not fill MarketplaceArtworkFeature.png unless crop is disabled
 

@@ -31,7 +31,6 @@ describe('splashes', function() {
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
           "android-MarketplaceArtworkFeature": path.join(tmpDir,"/MarketplaceArtworkFeature.png"),
-          "ios-Default": path.join(tmpDir,"/app/assets/iphone/Default.png"),
           "ios-Default@2x": path.join(tmpDir,"/app/assets/iphone/Default@2x.png"),
           "ios-Default-568h@2x": path.join(tmpDir,"/app/assets/iphone/Default-568h@2x.png"),
           "ios-Default-Landscape-736h@3x": path.join(tmpDir,"/app/assets/iphone/Default-Landscape-736h@3x.png"),

@@ -32,14 +32,12 @@ describe('icons', function() {
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
           "ios-DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
-          "ios-iTunesArtwork": path.join(tmpDir,"/app/assets/iphone/iTunesArtwork"),
           "android-MarketplaceArtwork": path.join(tmpDir,"/MarketplaceArtwork.png"),
           "android-appicon-ldpi": path.join(tmpDir,"/platform/android/res/drawable-ldpi/appicon.png"),
           "android-appicon-mdpi": path.join(tmpDir,"/platform/android/res/drawable-mdpi/appicon.png"),
           "android-appicon": path.join(tmpDir,"/app/assets/android/appicon.png"),
           "android-appicon-hdpi": path.join(tmpDir,"/platform/android/res/drawable-hdpi/appicon.png"),
           "android-appicon-xxxhdpi": path.join(tmpDir,"/platform/android/res/drawable-xxxhdpi/appicon.png"),
-          "ios-iTunesArtwork@2x": path.join(tmpDir,"/app/assets/iphone/iTunesArtwork@2x"),
           "tizen-appicon": path.join(tmpDir,"/app/assets/tizen/appicon.png"),
           "android-appicon-xxhdpi": path.join(tmpDir,"/platform/android/res/drawable-xxhdpi/appicon.png"),
           "android-appicon-xhdpi": path.join(tmpDir,"/platform/android/res/drawable-xhdpi/appicon.png"),

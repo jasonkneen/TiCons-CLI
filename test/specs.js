@@ -15,6 +15,7 @@ describe('specs', function() {
 
       specs['ios-iTunesArtwork'].should.be.an.Object;
       specs['ios-iTunesArtwork'].should.be.eql({
+        sdkVersion: '<5.0.0',
         type: 'icon',
         path: ':assets:' + path.normalize('/iphone/iTunesArtwork'),
         size: 512,

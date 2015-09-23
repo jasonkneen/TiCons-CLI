@@ -32,6 +32,7 @@ describe('jobs', function() {
           platforms: [
             "ios"
           ],
+          sdkVersion: '<5.0.0',
           name: "ios-iTunesArtwork",
           dpi: 72,
           output: path.normalize("Resources/iphone/iTunesArtwork")

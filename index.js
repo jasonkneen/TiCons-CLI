@@ -223,7 +223,12 @@ exports.assets = function (opts, callback) {
 							var convert = im(source);
 
 							// resize
-							convert.in('-resize', Math.round((spec.dpi / inputSpec.dpi) * 100) + '%');
+							convert.in('-resize', ((spec.dpi / inputSpec.dpi) * 100) + '%');
+
+							// show command
+							if (cfg.trace) {
+								logger.debug('Executing: ' + convert.args().join(' ').cyan);
+							}
 
 							convert.write(target, function (err) {
 

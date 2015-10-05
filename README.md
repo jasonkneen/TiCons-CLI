@@ -23,11 +23,7 @@ As a dependency in your projects `package.json`:
 }
 ```
 
-TiCons requires [ImageMagick](http://www.imagemagick.org/) CLI tools to be installed. If you're on OS X you can use the [Cactuslab installer](http://cactuslab.com/imagemagick/) or [Homebrew](http://brew.sh):
-
-```
-brew install imagemagick
-```
+> **NOTE:** TiCons requires [ImageMagick](http://www.imagemagick.org/script/binary-releases.php) to be installed.
 
 ## Quick Start
 TiCons can be used both as CLI and CommonJS module.

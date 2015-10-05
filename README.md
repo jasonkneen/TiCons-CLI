@@ -2,6 +2,8 @@
  
 Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.
 
+> **NOTE:** As from Titanium 5.0 you only need one `DefaultIcon.png` for iOS, which is what TiCons will generate by default. Use the new `--sdk-version <semver>` option to generate icons for older Titanium SDK versions.
+
 ## Install [![npm](http://img.shields.io/npm/v/ticons.png)](https://www.npmjs.org/package/ticons)
 
 As global CLI:

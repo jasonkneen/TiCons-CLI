@@ -3,20 +3,21 @@ var should = require('should'),
 	fs = require('fs-extended'),
 	_ = require('underscore'),
 	sizeOf = require('image-size'),
-	ticons = require('../');
+	ticons = require('../'),
+	jobs = require('../lib/jobs');
 
 var tmpDir = path.join(__dirname, '..', 'tmp');
 
-describe('bugs', function () {
+describe('bugs', function() {
 	this.timeout(20000);
 
-	beforeEach(function () {
+	beforeEach(function() {
 		fs.createDir(tmpDir, 0755);
 	});
 
-	describe('Invalid value for `min-dpi`', function () {
+	describe('Invalid value for `min-dpi`', function() {
 
-		it('should handle strings for min-dpi', function (done) {
+		it('should handle strings for min-dpi', function(done) {
 
 			ticons.splashes({
 				input: path.join(__dirname, 'icon.png'),
@@ -24,7 +25,7 @@ describe('bugs', function () {
 				platforms: ['ios'],
 				orientation: 'landscape',
 				minDpi: '160'
-			}, function (err, output) {
+			}, function(err, output) {
 
 				if (err) {
 					return done(new Error(err));
@@ -37,16 +38,16 @@ describe('bugs', function () {
 
 	});
 
-	describe('#31 - Splashes are square', function () {
+	describe('#31 - Splashes are square', function() {
 
-		it('should crop square input', function (done) {
+		it('should crop square input', function(done) {
 
 			ticons.splashes({
 				input: path.join(__dirname, 'icon.png'),
 				outputDir: tmpDir,
 				platforms: ['ios'],
 				orientation: 'landscape'
-			}, function (err, output) {
+			}, function(err, output) {
 
 				if (err) {
 					return done(new Error(err));
@@ -67,7 +68,32 @@ describe('bugs', function () {
 
 	});
 
-	afterEach(function () {
+	describe('#47 - --platforms iphone,ipad,android Not working for android', function() {
+
+		it('should select portrait nine, even in landscape', function(done) {
+
+			var specs = jobs.getSpecs({
+				outputDir: '.',
+				input: path.join(__dirname, 'splash.png'),
+				orientation: 'landscape',
+				type: 'splash',
+				platforms: ['android']
+			}, function(err, specs) {
+
+				if (err) {
+					return done(new Error(err));
+				}
+
+				should(specs['android-default-notlong-port-mdpi']).be.an.Object;
+
+				done();
+			});
+
+		});
+
+	});
+
+	afterEach(function() {
 		fs.deleteDirSync(tmpDir);
 	});
 

@@ -1,8 +1,8 @@
-# TiCons CLI [![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http:/appcelerator.com/alloy/)
+# TiCons CLI [](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http:/appcelerator.com/alloy/)
  
 Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.
 
-> **NOTE:** As from Titanium 5.0 you only need one `DefaultIcon.png` for iOS, which is what TiCons will generate by default. Use the new `--sdk-version <semver>` option to generate icons for older Titanium SDK versions.
+> **NOTE:** In Titanium 5.0 the `DefaultIcon.png` was introduced. See [DefaultIcon](#defaulticon) for how TiCons handles this.
 
 ## Install [![npm](http://img.shields.io/npm/v/ticons.png)](https://www.npmjs.org/package/ticons)
 
@@ -78,6 +78,7 @@ If the `outputDir` (or `-d` or CWD if missing) contains a project, *TiCons* will
 - If the project is classic instead of Alloy.
 - What platforms are targetted (`<deployment-targets>`).
 - If the app is locked to one orientation (`UISupportedInterfaceOrientations` etc.).
+- The SDK version used (for [DefaultIcon](#defaulticon)).
 
 In the CLI, you can add the `trace` (`-t`) option to see exactly what configuration is used based on your options and the smart defaults.
 
@@ -109,6 +110,11 @@ By default, some errors in the Appcelerator specs related to iOS and Android spl
 
 ### Radius
 If you use the `iTunesArtwork@2x` as input for Android and other platforms icons, you might want to round the corners a bit as only iOS does this for you. Simply pass a percentage between `0` and `50` to `--radius` (`-r`). Seems like `18` is about what it was for iOS6.
+
+### DefautIcon
+Since Titanium 5.0 you no longer need to provide all required iOS icon sizes. A single `DefaultIcon.png` in the root of your project will do. In Titanium 5.1 support for Windows was added. You can have a platform specific `DefaultIcon-ios.png` or `DefautlIcon-windows.png` as well, since for iOS it needs to be 24-bit (no alpha).
+
+TiCons will automatically generate the right icons based on the `sdk-version` option. It defaults to the SDK version found in your `tiapp.xml` or else the latest. If you have only iOS or Windows as the target platforms for your project/TiCons it will add the platform-specific suffix to the filename.
 
 ## Assets
 The `assets` command is assumes the following directories:

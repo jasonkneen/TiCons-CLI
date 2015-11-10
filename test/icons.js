@@ -31,7 +31,7 @@ describe('icons', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
-          "ios-DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
+          "DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
           "android-MarketplaceArtwork": path.join(tmpDir,"/MarketplaceArtwork.png"),
           "android-appicon-ldpi": path.join(tmpDir,"/platform/android/res/drawable-ldpi/appicon.png"),
           "android-appicon-mdpi": path.join(tmpDir,"/platform/android/res/drawable-mdpi/appicon.png"),
@@ -51,10 +51,43 @@ describe('icons', function() {
           "apple-watch-icon-44@2x.png": path.join(tmpDir,"/apple-watch/icon-44@2x.png"),
           "apple-watch-icon-86@2x.png": path.join(tmpDir,"/apple-watch/icon-86@2x.png"),
           "apple-watch-icon-98@2x.png": path.join(tmpDir,"/apple-watch/icon-98@2x.png"),
+          "windows-appicon":path.join(tmpDir,"/app/assets/windows/appicon.png"),
+          "windows-Square44x44Logo":path.join(tmpDir,"/app/assets/windows/Square44x44Logo.png"),
+          "windows-Square71x71Logo":path.join(tmpDir,"/app/assets/windows/Square71x71Logo.png"),
+          "windows-Square150x150Logo":path.join(tmpDir,"/app/assets/windows/Square150x150Logo.png"),
           "windows-Logo":path.join(tmpDir,"/app/assets/windows/Logo.png"),
-          "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png"),
-          "windows-Square44x44Logo.scale-100":path.join(tmpDir,"/app/assets/windows/Square44x44Logo.scale-100.png"),
-          "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png")
+          "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png"),
+          "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png")
+        }, _.identity));
+
+        should(_.every(output, function(output, name) {
+          return fs.existsSync(output);
+        })).be.true;
+
+        done();
+
+      });
+
+    });
+
+    it('generates expected files for ios-only', function(done) {
+
+      ticons.icons({
+        input: path.join(__dirname, 'icon.png'),
+        minDpi: 120,
+        maxDpi: 640,
+        outputDir: tmpDir,
+        platforms: ['ios'],
+        radius: 18,
+        alloy: true
+      }, function(err, output) {
+
+        if (err) {
+          return done(new Error(err));
+        }
+
+        _.sortBy(output, _.identity).should.be.eql(_.sortBy({
+          "DefaultIcon-ios": path.join(tmpDir,"/DefaultIcon-ios.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {
@@ -84,7 +117,7 @@ describe('icons', function() {
         }
 
         _.sortBy(output, _.identity).should.be.eql(_.sortBy({
-          "ios-DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
+          "DefaultIcon": path.join(tmpDir,"/DefaultIcon.png"),
           "ios-appicon-60": path.join(tmpDir,"/app/assets/iphone/appicon-60.png"),
           "ios-appicon@2x": path.join(tmpDir,"/app/assets/iphone/appicon@2x.png"),
           "ios-appicon": path.join(tmpDir,"/app/assets/iphone/appicon.png"),
@@ -122,10 +155,13 @@ describe('icons', function() {
           "apple-watch-icon-44@2x.png": path.join(tmpDir,"/apple-watch/icon-44@2x.png"),
           "apple-watch-icon-86@2x.png": path.join(tmpDir,"/apple-watch/icon-86@2x.png"),
           "apple-watch-icon-98@2x.png": path.join(tmpDir,"/apple-watch/icon-98@2x.png"),
+          "windows-appicon":path.join(tmpDir,"/app/assets/windows/appicon.png"),
+          "windows-Square44x44Logo":path.join(tmpDir,"/app/assets/windows/Square44x44Logo.png"),
+          "windows-Square71x71Logo":path.join(tmpDir,"/app/assets/windows/Square71x71Logo.png"),
+          "windows-Square150x150Logo":path.join(tmpDir,"/app/assets/windows/Square150x150Logo.png"),
           "windows-Logo":path.join(tmpDir,"/app/assets/windows/Logo.png"),
-          "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png"),
-          "windows-Square44x44Logo.scale-100":path.join(tmpDir,"/app/assets/windows/Square44x44Logo.scale-100.png"),
-          "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png")
+          "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png"),
+          "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {

@@ -21,8 +21,7 @@ describe('assets', function () {
 
       ticons.assets({
         input: PATH_ASSET_TO,
-        outputDir: PATH_TMP,
-        trace: true
+        outputDir: PATH_TMP
       }, function (err, output) {
 
         if (err) {

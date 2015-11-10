@@ -23,6 +23,7 @@ program
 	.option('-M, --max-dpi <dpi>', 'maximum density to generate, (default e.g. `480` or `xxhdpi`)')
 	.option('-d, --output-dir <path>', 'directory to write to')
 	.option('-a, --alloy', 'force Alloy paths, even if not detected')
+	.option('-b, --alloy-base <directory>', 'select a different alloy base directory instead of app, e.g. src')
 	.option('-p, --platforms <platforms>', 'none to detect, `all` or some of: ' + constants.platforms.join(','))
 	.option('-L, --label', 'draws the spec-name on each image for debugging')
 	.option('-s, --sdk-version <semver>', 'Titanium SDK version, overriding detected')

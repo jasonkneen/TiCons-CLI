@@ -50,14 +50,7 @@ describe('icons', function() {
           "apple-watch-icon-40@2x.png": path.join(tmpDir,"/apple-watch/icon-40@2x.png"),
           "apple-watch-icon-44@2x.png": path.join(tmpDir,"/apple-watch/icon-44@2x.png"),
           "apple-watch-icon-86@2x.png": path.join(tmpDir,"/apple-watch/icon-86@2x.png"),
-          "apple-watch-icon-98@2x.png": path.join(tmpDir,"/apple-watch/icon-98@2x.png"),
-          "windows-appicon":path.join(tmpDir,"/app/assets/windows/appicon.png"),
-          "windows-Square44x44Logo":path.join(tmpDir,"/app/assets/windows/Square44x44Logo.png"),
-          "windows-Square71x71Logo":path.join(tmpDir,"/app/assets/windows/Square71x71Logo.png"),
-          "windows-Square150x150Logo":path.join(tmpDir,"/app/assets/windows/Square150x150Logo.png"),
-          "windows-Logo":path.join(tmpDir,"/app/assets/windows/Logo.png"),
-          "windows-StoreLogo":path.join(tmpDir,"/app/assets/windows/StoreLogo.png"),
-          "windows-SmallLogo":path.join(tmpDir,"/app/assets/windows/SmallLogo.png")
+          "apple-watch-icon-98@2x.png": path.join(tmpDir,"/apple-watch/icon-98@2x.png")
         }, _.identity));
 
         should(_.every(output, function(output, name) {
@@ -131,6 +124,7 @@ describe('icons', function() {
           "ios-appicon-76": path.join(tmpDir,"/app/assets/iphone/appicon-76.png"),
           "ios-appicon-Small-40": path.join(tmpDir,"/app/assets/iphone/appicon-Small-40.png"),
           "ios-appicon-76@2x": path.join(tmpDir,"/app/assets/iphone/appicon-76@2x.png"),
+          "ios-appicon-83.5@2x": path.join(tmpDir,"/app/assets/iphone/appicon-83.5@2x.png"),
           "ios-iTunesArtwork": path.join(tmpDir,"/app/assets/iphone/iTunesArtwork"),
           "android-MarketplaceArtwork": path.join(tmpDir,"/MarketplaceArtwork.png"),
           "android-appicon-ldpi": path.join(tmpDir,"/platform/android/res/drawable-ldpi/appicon.png"),

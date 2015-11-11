@@ -3,4 +3,3 @@ before_script:
   - npm install -g grunt-cli
 os:
   - linux
-  - osx

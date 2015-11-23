@@ -5,8 +5,8 @@ var should = require('should'),
   ticons = require('../');
 
 var PATH_TMP = path.join(__dirname, '..', 'tmp');
-var PATH_ASSET_FROM = path.join(__dirname, 'asset@3x.png');
-var PATH_ASSET_TO = path.join(PATH_TMP, 'Resources', 'iphone', 'images', 'asset@3x.png');
+var PATH_ASSET_FROM = path.join(__dirname, 'asset.png');
+var PATH_ASSET_TO = path.join(PATH_TMP, 'Resources', 'android', 'images', 'res-xxxhdpi', 'asset.png');
 
 describe('assets', function () {
 
@@ -29,6 +29,7 @@ describe('assets', function () {
         }
 
         output.should.eql([
+          PATH_TMP + '/Resources/iphone/images/asset@3x.png',
           PATH_TMP + '/Resources/iphone/images/asset@2x.png',
           PATH_TMP + '/Resources/images/asset.png',
           PATH_TMP + '/Resources/android/images/res-xxhdpi/asset.png',

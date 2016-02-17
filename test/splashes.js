@@ -69,6 +69,38 @@ describe('splashes', function() {
 
     });
 
+    it('generates launch logos', function(done) {
+
+      ticons.splashes({
+        input: path.join(__dirname, 'splash.png'),
+        outputDir: tmpDir,
+        alloy: true,
+        platforms: ['ios'],
+        storyboard: true
+      }, function(err, output) {
+
+        if (err) {
+          return done(new Error(err));
+        }
+
+        _.sortBy(output, _.identity).should.be.eql(_.sortBy({
+          "LaunchLogo~iphone": path.join(tmpDir,"/app/assets/iphone/LaunchLogo~iphone.png"),
+          "LaunchLogo@2x~iphone": path.join(tmpDir,"/app/assets/iphone/LaunchLogo@2x~iphone.png"),
+          "LaunchLogo@3x~iphone": path.join(tmpDir,"/app/assets/iphone/LaunchLogo@3x~iphone.png"),
+          "LaunchLogo~ipad": path.join(tmpDir,"/app/assets/iphone/LaunchLogo~ipad.png"),
+          "LaunchLogo@2x~ipad": path.join(tmpDir,"/app/assets/iphone/LaunchLogo@2x~ipad.png"),
+        }, _.identity));
+
+        should(_.every(output, function(output, name) {
+          return fs.existsSync(output);
+        })).be.true;
+
+        done();
+
+      });
+
+    });
+
     after(function() {
       fs.deleteDirSync(tmpDir);
     });

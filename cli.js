@@ -34,16 +34,13 @@ program.command('icons [input]')
 	.option('-r, --radius <percentage>', 'percentage between 0 and 50 (all platforms except iOS)')
 	.action(icons);
 
-program.command('logos [input]')
-	.description('generate launch logos (iOS)')
-	.action(logos);
-
 program.command('splashes [input]')
 	.description('generate splash screens (aka launch images)')
 	.option('-l, --locale <code>', 'outputs to i18n folders')
 	.option('-o, --orientation <orientation>', 'none to detect, `all` or one of: ' + constants.orientations.join(','))
 	.option('-W, --width <width>', 'width from center that may not be cropped')
 	.option('-H, --height <width>', 'height from center that may not be cropped')
+	.option('-S, --storyboard', 'generate LaunchLogo.png for iOS to use with storyboards')
 	.option('-n, --no-nine', 'do NOT generate 9-patch images (Android)')
 	.option('-c, --no-crop', 'do NOT crop splashes but contain and fill')
 	.option('-f, --no-fix', 'do NOT fix errors in Appcelerator specs')
@@ -91,23 +88,6 @@ function icons(input, env) {
 			logger.error(err);
 		} else {
 			logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' icons');
-		}
-	});
-}
-
-function logos(input, env) {
-	notifier.update && notifier.notify();
-
-	var options = _filterOptions(env);
-
-	options.cli = true;
-	options.input = input;
-
-	ticons.logos(options, function (err, output) {
-		if (err) {
-			logger.error(err);
-		} else {
-			logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' launch logos');
 		}
 	});
 }

@@ -48,6 +48,42 @@ exports.icons = function (opts, callback) {
 };
 
 /**
+ * Generates logos
+ * @param  {Object}   opts     options
+ * @param  {Function} callback callback(err, output)
+ */
+exports.logos = function (opts, callback) {
+	opts = opts || {};
+	opts.type = 'logo';
+
+	// config
+	config(opts, function (err, cfg) {
+
+		if (err) {
+			return callback(err);
+		}
+
+		// create tasks
+		jobs.createTasks(cfg, function (err, tasks) {
+
+			if (err) {
+				return callback(err);
+			}
+
+			if (cfg.cli) {
+				logger.info('Starting ' + _.size(tasks) + ' jobs');
+			}
+
+			// run tasks
+			async.parallel(tasks, callback);
+
+		});
+
+	});
+
+};
+
+/**
  * Generates icons
  * @param  {Object}   opts     options
  * @param  {Function} callback callback(err, output)

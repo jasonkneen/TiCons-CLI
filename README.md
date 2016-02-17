@@ -116,6 +116,10 @@ Since Titanium 5.0 you no longer need to provide all required iOS icon sizes. A 
 
 TiCons will automatically generate the right icons based on the `sdk-version` option. It defaults to the SDK version found in your `tiapp.xml` or else the latest. If you have only iOS or Windows as the target platforms for your project/TiCons it will add the platform-specific suffix to the filename.
 
+## Launch Logos
+
+Since 0.20 TiCons can also generate `LaunchLogo*.png` files that Titanium can use to generate storyboard launch images. Since Titanium falls back to `DefaultIcon*.png` you only need these if you want it to be different from your app icon.
+
 ## Assets
 The `assets` command is assumes the following directories:
 

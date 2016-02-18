@@ -84,7 +84,7 @@ In the CLI, you can add the `trace` (`-t`) option to see exactly what configurat
 
 ## Splashes
 
-## Storyboard Launch Screens
+### Storyboard Launch Screens
 
 Since 0.21 TiCons can also generate `LaunchLogo*.png` files that Titanium can use to generate storyboard launch images. Since Titanium falls back to `DefaultIcon*.png` for this you only need these if you want it to be different from your app icon. Just add the `--storyboard` option to have TiCons generate Launch Logos instead of regular splash images.
 

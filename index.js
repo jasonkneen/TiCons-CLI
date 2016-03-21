@@ -2,48 +2,48 @@
 'use strict';
 
 var _ = require('underscore'),
-	path = require('path'),
-	fs = require('fs-extended'),
-	async = require('async'),
-	config = require('./lib/config'),
-	constants = require('./lib/constants'),
-	logger = require('./lib/logger'),
-	jobs = require('./lib/jobs'),
-	gm = require('gm');
+  path = require('path'),
+  fs = require('fs-extended'),
+  async = require('async'),
+  config = require('./lib/config'),
+  constants = require('./lib/constants'),
+  logger = require('./lib/logger'),
+  jobs = require('./lib/jobs'),
+  gm = require('gm');
 
 /**
  * Generates icons
  * @param  {Object}   opts     options
  * @param  {Function} callback callback(err, output)
  */
-exports.icons = function (opts, callback) {
-	opts = opts || {};
-	opts.type = 'icon';
+exports.icons = function(opts, callback) {
+  opts = opts || {};
+  opts.type = 'icon';
 
-	// config
-	config(opts, function (err, cfg) {
+  // config
+  config(opts, function(err, cfg) {
 
-		if (err) {
-			return callback(err);
-		}
+    if (err) {
+      return callback(err);
+    }
 
-		// create tasks
-		jobs.createTasks(cfg, function (err, tasks) {
+    // create tasks
+    jobs.createTasks(cfg, function(err, tasks) {
 
-			if (err) {
-				return callback(err);
-			}
+      if (err) {
+        return callback(err);
+      }
 
-			if (cfg.cli) {
-				logger.info('Starting ' + _.size(tasks) + ' jobs');
-			}
+      if (cfg.cli) {
+        logger.info('Starting ' + _.size(tasks) + ' jobs');
+      }
 
-			// run tasks
-			async.parallel(tasks, callback);
+      // run tasks
+      async.parallel(tasks, callback);
 
-		});
+    });
 
-	});
+  });
 
 };
 
@@ -52,34 +52,34 @@ exports.icons = function (opts, callback) {
  * @param  {Object}   opts     options
  * @param  {Function} callback callback(err, output)
  */
-exports.splashes = function (opts, callback) {
-	opts = opts || {};
-	opts.type = 'splash';
+exports.splashes = function(opts, callback) {
+  opts = opts || {};
+  opts.type = 'splash';
 
-	// config
-	config(opts, function (err, cfg) {
+  // config
+  config(opts, function(err, cfg) {
 
-		if (err) {
-			return callback(err);
-		}
+    if (err) {
+      return callback(err);
+    }
 
-		// create tasks
-		jobs.createTasks(cfg, function (err, tasks) {
+    // create tasks
+    jobs.createTasks(cfg, function(err, tasks) {
 
-			if (err) {
-				return callback(err);
-			}
+      if (err) {
+        return callback(err);
+      }
 
-			if (cfg.cli) {
-				logger.info('Starting ' + _.size(tasks) + ' jobs');
-			}
+      if (cfg.cli) {
+        logger.info('Starting ' + _.size(tasks) + ' jobs');
+      }
 
-			// run tasks
-			async.parallel(tasks, callback);
+      // run tasks
+      async.parallel(tasks, callback);
 
-		});
+    });
 
-	});
+  });
 
 };
 
@@ -88,180 +88,217 @@ exports.splashes = function (opts, callback) {
  * @param  {Object}   opts     options
  * @param  {Function} callback callback(err, output)
  */
-exports.assets = function (opts, callback) {
-	opts = opts || {};
-	opts.type = 'asset';
+exports.assets = function(opts, callback) {
+  opts = opts || {};
+  opts.type = 'asset';
 
-	// config
-	config(opts, function (err, cfg) {
+  // config
+  config(opts, function(err, cfg) {
 
-		if (err) {
-			return callback(err);
-		}
+    if (err) {
+      return callback(err);
+    }
 
-		var stat = fs.statSync(cfg.input);
-		var files = [];
+    var stat = fs.statSync(cfg.input);
+    var files = [];
 
-		jobs.getSpecs(cfg, function (err, specs) {
-			var outputSpecs = {};
-			var inputSpec;
+    var inputIsUnderOutput = cfg.input.indexOf(path.join(cfg.outputDir, cfg.assetsDir)) === 0;
 
-			_.each(specs, function (spec, name) {
+    jobs.getSpecs(cfg, function(err, specs) {
+      var outputSpecs = {};
+      var inputSpec;
 
-				if (!inputSpec && cfg.input.substr(0, spec.output.length) === spec.output) {
+      _.each(specs, function(spec, name) {
 
-					if (spec.suffix) {
-						var re = new RegExp((spec.suffix || '') + '\.(png|jpg)$');
+        if (!inputSpec) {
+          var re = new RegExp((spec.suffix || '') + '\.(png|jpg)$');
 
-						if (stat.isFile()) {
+          // if input is not under output
+          if (!inputIsUnderOutput) {
 
-							if (cfg.input.match(re)) {
-								inputSpec = spec;
-								return;
-							}
+            // and the user has specified dpi
+            if (cfg.origDpi) {
 
-						} else {
+              // and this spec matches
+              if (spec.dpi === cfg.origDpi) {
+                inputSpec = spec;
+              }
 
-							var suffixFiles = fs.listFilesSync(cfg.input, {
-								recursive: true,
-								prependDir: true,
-								filter: function (itemPath, itemStat) {
-									return itemPath.match(re);
-								}
-							});
+            } else {
 
-							if (suffixFiles.length > 0) {
-								inputSpec = spec;
-								return;
-							}
+              // if this spec has a suffix we can and do match
+              if (spec.suffix && stat.isFile() && cfg.input.match(re)) {
+                inputSpec = spec;
+              }
+            }
 
-						}
+            // since our input is not under ouput, we need to override the output path
+            if (inputSpec) {
+              inputSpec = _.defaults({
+                output: stat.isFile() ? path.dirname(cfg.input) : cfg.input
+              }, inputSpec);
+            }
 
-					} else {
-						inputSpec = spec;
-						return;
-					}
-				}
+          } else {
 
-				outputSpecs[name] = spec;
+            // our input is under this specific spec path
+            if (cfg.input.substr(0, spec.output.length) === spec.output) {
 
-			});
+              // this spec has NO suffix we need to match as well
+              if (!spec.suffix) {
+                inputSpec = spec;
+                return; // skip this spec as output
+              }
 
-			if (!inputSpec) {
-				return logger.error('Could not identify input density.');
-			}
+              // the input is a file
+              if (stat.isFile()) {
 
-			inputSpec.outputLength = inputSpec.output.length;
+                // which matches the suffix
+                if (cfg.input.match(re)) {
+                  inputSpec = spec;
+                  return; // skip this spec as output
+                }
 
-			if (outputSpecs['android-res-mdpi'] && outputSpecs['ios-images']) {
-				delete outputSpecs['android-res-mdpi'];
-			}
+              } else {
 
-			if (stat.isDirectory()) {
+                // see if there are files under the path that match the suffix
+                var suffixFiles = fs.listFilesSync(cfg.input, {
+                  recursive: true,
+                  prependDir: true,
+                  filter: function(itemPath, itemStat) {
+                    return itemPath.match(re);
+                  }
+                });
 
-				files = fs.listFilesSync(cfg.input, {
-					recursive: true,
-					prependDir: true,
-					filter: function (itemPath, itemStat) {
-						return itemPath.match(new RegExp((inputSpec.suffix || '') + '\.(png|jpg)$'));
-					}
-				});
+                // there are
+                if (suffixFiles.length > 0) {
+                  inputSpec = spec;
+                  return; // skip this spec as output
+                }
+              }
+            }
+          }
+        }
 
-			} else {
-				files.push(cfg.input);
-			}
+        // include this spec in the output
+        outputSpecs[name] = spec;
+      });
 
-			if (files.length === 0) {
-				return logger.error('Could not find input images.');
-			}
+      if (!inputSpec) {
+        return callback('Could not identify input density.');
+      }
 
-			var tasks = [];
+      if (outputSpecs['android-res-mdpi'] && outputSpecs['ios-images']) {
+        delete outputSpecs['android-res-mdpi'];
+      }
 
-			_.each(files, function (source) {
-				var sourceTime = fs.statSync(source).mtime;
-				var relativePath = source.substr(inputSpec.outputLength);
+      if (stat.isDirectory()) {
 
-				_.each(outputSpecs, function (spec, n) {
+        files = fs.listFilesSync(cfg.input, {
+          recursive: true,
+          prependDir: true,
+          filter: function(itemPath, itemStat) {
 
-					if (spec.dpi > inputSpec.dpi) {
-						logger.info('Skipped higher dpi: ' + spec.name.cyan);
+            // only filter on suffix if our input is in our output dir
+            return itemPath.match(new RegExp(((!inputIsUnderOutput && inputSpec.suffix) ? '' : inputSpec.suffix) + '\.(png|jpg)$'));
+          }
+        });
 
-						return;
-					}
+      } else {
+        files.push(cfg.input);
+      }
 
-					var target = path.join(spec.output, relativePath);
+      if (files.length === 0) {
+        return callback('Could not find input images.');
+      }
 
-					if (inputSpec.suffix) {
-						target = target.replace(inputSpec.suffix, spec.suffix || '');
+      var tasks = [];
 
-					} else if (spec.suffix) {
-						target = target.replace(/(\.(png|jpg)+)$/i, spec.suffix + '$1');
-					}
+      _.each(files, function(source) {
+        var sourceTime = fs.statSync(source).mtime;
+        var relativePath = source.substr(inputSpec.output.length);
 
-					if (!fs.existsSync(target.replace(/(\.png)$/, '.9$1')) && (!fs.existsSync(target) || (sourceTime > fs.statSync(target).mtime))) {
+        // replace any suffixes from our source
+        relativePath = relativePath.replace(/(?:@[0-9]x|~[a-z]+)(\.[a-z]+)$/, '$1');
 
-						tasks.push(function (callback) {
+        _.each(outputSpecs, function(spec, n) {
 
-							if (inputSpec.dpi === spec.dpi) {
-								fs.copyFileSync(source, target);
+          if (spec.dpi > inputSpec.dpi) {
+            logger.info('Skipped higher dpi: ' + spec.name.cyan);
 
-								// async feedback for CLI
-								if (cfg.cli) {
-									logger.info('Copied: ' + target.cyan);
-								}
+            return;
+          }
 
-								return callback(null, target);
-							}
+          var target = path.join(spec.output, relativePath);
 
-							fs.createDirSync(path.dirname(target));
+          if (spec.suffix) {
+            target = target.replace(/(\.(png|jpg)+)$/i, spec.suffix + '$1');
+          }
 
-							var im = gm.subClass({
-								imageMagick: true
-							});
+          if (!fs.existsSync(target.replace(/(\.png)$/, '.9$1')) && (!fs.existsSync(target) || (sourceTime > fs.statSync(target).mtime))) {
 
-							// read
-							var convert = im(source);
+            tasks.push(function(callback) {
 
-							// resize
-							convert.in('-resize', ((spec.dpi / inputSpec.dpi) * 100) + '%');
+              if (inputSpec.dpi === spec.dpi) {
+                fs.copyFileSync(source, target);
 
-							// show command
-							if (cfg.trace) {
-								logger.debug('Executing: ' + convert.args().join(' ').cyan);
-							}
+                // async feedback for CLI
+                if (cfg.cli) {
+                  logger.info('Copied: ' + target.cyan);
+                }
 
-							convert.write(target, function (err) {
+                return callback(null, target);
+              }
 
-								if (err) {
-									return callback(err);
-								}
+              fs.createDirSync(path.dirname(target));
 
-								// async feedback for CLI
-								if (cfg.cli) {
-									logger.info('Generated: ' + target.cyan);
-								}
+              var im = gm.subClass({
+                imageMagick: true
+              });
 
-								// pass back output
-								callback(null, target);
+              // read
+              var convert = im(source);
 
-							});
+              // resize
+              convert.in('-resize', ((spec.dpi / inputSpec.dpi) * 100) + '%');
 
-							// show command
-							if (cfg.trace && cfg.cli) {
-								logger.debug('Executing: ' + convert.args().join(' ').cyan);
-							}
+              // show command
+              if (cfg.trace) {
+                logger.debug('Executing: ' + convert.args().join(' ').cyan);
+              }
 
-						});
+              convert.write(target, function(err) {
 
-					}
+                if (err) {
+                  return callback(err);
+                }
 
-				});
+                // async feedback for CLI
+                if (cfg.cli) {
+                  logger.info('Generated: ' + target.cyan);
+                }
 
-			});
+                // pass back output
+                callback(null, target);
 
-			async.series(tasks, callback);
-		});
+              });
 
-	});
+              // show command
+              if (cfg.trace && cfg.cli) {
+                logger.debug('Executing: ' + convert.args().join(' ').cyan);
+              }
+
+            });
+
+          }
+
+        });
+
+      });
+
+      async.series(tasks, callback);
+    });
+
+  });
 
 };

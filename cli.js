@@ -48,6 +48,7 @@ program.command('splashes [input]')
 
 program.command('assets [input]')
 	.description('generate missing densities for input asset(s)')
+	.option('-O, --orig-dpi <code>', 'input density (default: detect by file path and name)')
 	.action(assets);
 
 program.parse(process.argv);

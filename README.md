@@ -129,7 +129,12 @@ The `assets` command is assumes the following directories:
 
 Just run `ticons assets` in your project root and it will use (HD) Retina images or Android `xxxhdpi` or `xxhdpi` images to generate the others, unless the target image is newer, a 9-patch version is found or the target dpi is higher then the input.
 
-You can also point to a specific image or directory by adding an argument like `ticons assets Resources/images/iphone`. TiCons will try to determine the input dpi based on the location:
+You can also point to a specific image or directory by adding an argument like `ticons assets Resources/images/iphone`. TiCons will try to determine the input dpi based on the location.
+
+### Use any input and output
+Since 0.22 you can now set the exact input DPI with the `--orig-dpi` option, the input file or folder no longer needs to be under the output and if the output path ends with `Resources` or `assets`, TiCons will work relative to that. This allows you to use any input and write to any output, e.g.:
+
+	ticons assets ./my-hires-images ./app/widgets/my-widget/assets --orig-dpi @3x
 
 ## Widgets
 You can also run `ticons assets` in a widget root, which will cause TiCons to read the target platforms from `widget.json` instead of `tiapp.xml`.

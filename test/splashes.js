@@ -100,6 +100,42 @@ describe('splashes', function() {
       });
 
     });
+    
+    it('generates i18n launch images', function(done) {
+
+      ticons.splashes({
+        input: path.join(__dirname, 'splash.png'),
+        outputDir: tmpDir,
+        alloy: true,
+        platforms: ['ios'],
+        locale: 'nl'
+      }, function(err, output) {
+
+        if (err) {
+          return done(new Error(err));
+        }
+
+        _.sortBy(output, _.identity).should.be.eql(_.sortBy({
+          "Default-568h@2x": path.join(tmpDir,"/app/i18n/nl/Default-568h@2x.png"),
+          "Default-667h@2x": path.join(tmpDir,"/app/i18n/nl/Default-667h@2x.png"),
+          "Default-Landscape-736h@3x": path.join(tmpDir,"/app/i18n/nl/Default-Landscape-736h@3x.png"),
+          "Default-Landscape": path.join(tmpDir,"/app/i18n/nl/Default-Landscape.png"),
+          "Default-Landscape@2x": path.join(tmpDir,"/app/i18n/nl/Default-Landscape@2x.png"),
+          "Default-Portrait-736@3x": path.join(tmpDir,"/app/i18n/nl/Default-Portrait-736h@3x.png"),
+          "Default-Portrait": path.join(tmpDir,"/app/i18n/nl/Default-Portrait.png"),
+          "Default-Portrait@2x": path.join(tmpDir,"/app/i18n/nl/Default-Portrait@2x.png"),
+          "Default@2x": path.join(tmpDir,"/app/i18n/nl/Default@2x.png"),
+        }, _.identity));
+
+        should(_.every(output, function(output, name) {
+          return fs.existsSync(output);
+        })).be.true;
+
+        done();
+
+      });
+
+    });
 
     after(function() {
       fs.deleteDirSync(tmpDir);

@@ -200,7 +200,7 @@ exports.assets = function(opts, callback) {
           filter: function(itemPath, itemStat) {
 
             // only filter on suffix if our input is in our output dir
-            return itemPath.match(new RegExp(((!inputIsUnderOutput && inputSpec.suffix) ? '' : inputSpec.suffix) + '\.(png|jpg)$'));
+            return itemPath.match(new RegExp(((!inputIsUnderOutput || !inputSpec.suffix) ? '' : inputSpec.suffix) + '\.(png|jpg)$'));
           }
         });
 

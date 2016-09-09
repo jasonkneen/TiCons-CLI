@@ -4,6 +4,10 @@ Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) t
 
 > **NOTE:** In Titanium 5.0 the `DefaultIcon.png` was introduced. See [DefaultIcon](#defaulticon) for how TiCons handles this.
 
+## Prerequisites
+
+* [ImageMagick](http://www.imagemagick.org/script/binary-releases.php)
+
 ## Install [![npm](http://img.shields.io/npm/v/ticons.png)](https://www.npmjs.org/package/ticons)
 
 As global CLI:
@@ -22,8 +26,6 @@ As a dependency in your projects `package.json`:
   }
 }
 ```
-
-> **NOTE:** TiCons requires [ImageMagick](http://www.imagemagick.org/script/binary-releases.php) to be installed.
 
 ## Quick Start
 TiCons can be used both as CLI and CommonJS module.

@@ -137,6 +137,44 @@ describe('splashes', function() {
 
     });
 
+    it('generates iPhone X format', function(done) {
+
+      ticons.splashes({
+        input: path.join(__dirname, 'splash.png'),
+        outputDir: tmpDir,
+        alloy: true,
+        platforms: ['ios'],
+        sdkVersion: '6.3.0'
+      }, function(err, output) {
+
+        if (err) {
+          return done(new Error(err));
+        }
+
+        _.sortBy(output, _.identity).should.be.eql(_.sortBy({
+          "Default-568h@2x": path.join(tmpDir,"/app/assets/iphone/Default-568h@2x.png"),
+          "Default-667h@2x": path.join(tmpDir,"/app/assets/iphone/Default-667h@2x.png"),
+          "Default-Landscape-736h@3x": path.join(tmpDir,"/app/assets/iphone/Default-Landscape-736h@3x.png"),
+          "Default-Landscape-2436h@3x": path.join(tmpDir,"/app/assets/iphone/Default-Landscape-2436h@3x.png"),
+          "Default-Landscape": path.join(tmpDir,"/app/assets/iphone/Default-Landscape.png"),
+          "Default-Landscape@2x": path.join(tmpDir,"/app/assets/iphone/Default-Landscape@2x.png"),
+          "Default-Portrait-736@3x": path.join(tmpDir,"/app/assets/iphone/Default-Portrait-736h@3x.png"),
+          "Default-Portrait-2436@3x": path.join(tmpDir,"/app/assets/iphone/Default-Portrait-2436h@3x.png"),
+          "Default-Portrait": path.join(tmpDir,"/app/assets/iphone/Default-Portrait.png"),
+          "Default-Portrait@2x": path.join(tmpDir,"/app/assets/iphone/Default-Portrait@2x.png"),
+          "Default@2x": path.join(tmpDir,"/app/assets/iphone/Default@2x.png"),
+        }, _.identity));
+
+        should(_.every(output, function(output, name) {
+          return fs.existsSync(output);
+        })).be.true;
+
+        done();
+
+      });
+
+    });
+
     after(function() {
       fs.deleteDirSync(tmpDir);
     });

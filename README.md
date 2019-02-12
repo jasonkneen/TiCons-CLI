@@ -1,5 +1,3 @@
-> *UNMAINTAINED:* I no longer actively maintain this project. I review PRs, but don't work on issues. If you'd like to take it over, contact me by creating an issue.
-
 # TiCons CLI [](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http:/appcelerator.com/alloy/)
  
 Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.

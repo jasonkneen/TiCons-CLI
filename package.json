@@ -41,9 +41,10 @@
     "async": "^0.2.10",
     "colors": "^0.6.2",
     "commander": "^2.1.0",
+    "debug": "^4.1.1",
     "fs-extended": "^0.2.0",
-    "gm": "~1.17.0",
-    "semver": "^5.0.1",
+    "gm": "^1.23.1",
+    "semver": "^6.3.0",
     "underscore": "^1.5.2",
     "update-notifier": "^0.1.10"
   },

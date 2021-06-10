@@ -42,20 +42,21 @@
     "colors": "^0.6.2",
     "commander": "^2.1.0",
     "fs-extended": "^0.2.0",
-    "gm": "~1.17.0",
+    "gm": "~1.23.1",
     "semver": "^5.0.1",
     "underscore": "^1.5.2",
-    "update-notifier": "^0.1.10"
+    "update-notifier": "^5.0.0",
+    "sindresorhus": "^2.1.0"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/fokkezb/ticons-cli.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-mocha-test": "~0.8.1",
+    "grunt": "^1.4.1",
+    "grunt-mocha-test": "^0.13.3",
     "image-size": "^0.3.5",
-    "mocha": "~1.17.0",
+    "mocha": "^9.0.0",
     "should": "~3.1.2"
   },
   "engines": {

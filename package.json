@@ -38,7 +38,7 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "async": "^0.2.10",
+    "async": "^3.2.4",
     "colors": "^0.6.2",
     "commander": "^2.1.0",
     "fs-extended": "^0.2.0",
@@ -46,7 +46,7 @@
     "semver": "^5.0.1",
     "underscore": "^1.5.2",
     "update-notifier": "^5.0.0",
-    "sindresorhus": "^2.1.0"
+    "sindresorhus": "^3.0.2"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
-# TiCons CLI [](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http:/appcelerator.com/alloy/)
+# TiCons CLI [Titanium Alloy](https://titaniumsdk.com/guide/Alloy_Framework/Alloy_Getting_Started.html)
  
-Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.
+Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Titanium](http://www.titaniumsdk.com) & [Alloy](https://titaniumsdk.com/guide/Alloy_Framework/Alloy_Getting_Started.html) apps.
 
 > **NOTE:** In Titanium 5.0 the `DefaultIcon.png` was introduced. See [DefaultIcon](#defaulticon) for how TiCons handles this.
 

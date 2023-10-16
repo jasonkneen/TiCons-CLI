@@ -1,6 +1,6 @@
-# TiCons CLI [](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http:/appcelerator.com/alloy/)
+# TiCons CLI [Titanium Alloy](https://titaniumsdk.com/guide/Alloy_Framework/Alloy_Getting_Started.html)
  
-Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Appcelerator](http://appcelerator.com) [Titanium](http://appcelerator.com/titanium) & [Alloy](http://appcelerator.com/alloy) apps.
+Command-line and CommonJS module version of [TiCons](http://ticons.fokkezb.nl) to generate icons and splash screens (aka launch images) for [Titanium](http://www.titaniumsdk.com) & [Alloy](https://titaniumsdk.com/guide/Alloy_Framework/Alloy_Getting_Started.html) apps.
 
 > **NOTE:** In Titanium 5.0 the `DefaultIcon.png` was introduced. See [DefaultIcon](#defaulticon) for how TiCons handles this.
 
@@ -121,6 +121,9 @@ If you use the `iTunesArtwork@2x` as input for Android and other platforms icons
 Since Titanium 5.0 you no longer need to provide all required iOS icon sizes. A single `DefaultIcon.png` in the root of your project will do. In Titanium 5.1 support for Windows was added. You can have a platform specific `DefaultIcon-ios.png` or `DefautlIcon-windows.png` as well, since for iOS it needs to be 24-bit (no alpha).
 
 TiCons will automatically generate the right icons based on the `sdk-version` option. It defaults to the SDK version found in your `tiapp.xml` or else the latest. If you have only iOS or Windows as the target platforms for your project/TiCons it will add the platform-specific suffix to the filename.
+
+## Adaptive Icons (Android Only)
+Pass to `adaptiveicons` command the png icon 1024x1024 (https://developer.android.com/develop/ui/views/launch/icon_design_adaptive)
 
 ## Assets
 The `assets` command is assumes the following directories:

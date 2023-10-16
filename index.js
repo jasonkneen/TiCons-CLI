@@ -48,11 +48,11 @@ exports.icons = function(opts, callback) {
 };
 
 /**
- * Generates iconsforeground
+ * Generates adaptiveicons
  * @param  {Object}   opts     options
  * @param  {Function} callback callback(err, output)
  */
-exports.iconsforeground = function(opts, callback) {
+exports.adaptiveicons = function(opts, callback) {
   opts = opts || {};
   opts.type = 'icon-foreground';
 

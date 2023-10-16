@@ -6,7 +6,7 @@ var should = require('should'),
 
 var tmpDir = path.join(__dirname, '..', 'tmp');
 
-describe('iconsforeground', function() {
+describe('adaptiveicons', function() {
 
   describe('alloy', function() {
     this.timeout(10000);
@@ -17,8 +17,8 @@ describe('iconsforeground', function() {
 
     it('generates expected files for android-only', function(done) {
 
-      ticons.iconsforeground({
-        input: path.join(__dirname, 'icon-foreground.png'),
+      ticons.adaptiveicons({
+        input: path.join(__dirname, 'icon-adaptive.png'),
         minDpi: 120,
         maxDpi: 640,
         outputDir: tmpDir,

@@ -122,6 +122,9 @@ Since Titanium 5.0 you no longer need to provide all required iOS icon sizes. A 
 
 TiCons will automatically generate the right icons based on the `sdk-version` option. It defaults to the SDK version found in your `tiapp.xml` or else the latest. If you have only iOS or Windows as the target platforms for your project/TiCons it will add the platform-specific suffix to the filename.
 
+## Adaptive Icons (Android Only)
+Pass to `adaptiveicons` command the png icon 1024x1024 (https://developer.android.com/develop/ui/views/launch/icon_design_adaptive)
+
 ## Assets
 The `assets` command is assumes the following directories:
 

@@ -34,10 +34,10 @@ program.command('icons [input]')
 	.option('-r, --radius <percentage>', 'percentage between 0 and 50 (all platforms except iOS)')
 	.action(icons);
 
-program.command('iconsforeground [input]')
+program.command('adaptiveicons [input]')
 	.description('generate foregrounds')
 	.option('-r, --radius <percentage>', 'percentage between 0 and 50 (all platforms except iOS)')
-	.action(iconsforeground);
+	.action(adaptiveicons);
 
 program.command('splashes [input]')
 	.description('generate splash screens (aka launch images)')
@@ -98,7 +98,7 @@ function icons(input, env) {
 	});
 }
 
-function iconsforeground(input, env) {
+function adaptiveicons(input, env) {
 	notifier.update && notifier.notify();
 
 	var options = _filterOptions(env);
@@ -106,7 +106,7 @@ function iconsforeground(input, env) {
 	options.cli = true;
 	options.input = input;
 
-	ticons.iconsforeground(options, function (err, output) {
+	ticons.adaptiveicons(options, function (err, output) {
 		if (err) {
 			logger.error(err);
 		} else {

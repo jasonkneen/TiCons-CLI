@@ -34,6 +34,11 @@ program.command('icons [input]')
 	.option('-r, --radius <percentage>', 'percentage between 0 and 50 (all platforms except iOS)')
 	.action(icons);
 
+program.command('adaptiveicons [input]')
+	.description('generate foregrounds')
+	.option('-r, --radius <percentage>', 'percentage between 0 and 50 (all platforms except iOS)')
+	.action(adaptiveicons);
+
 program.command('splashes [input]')
 	.description('generate splash screens (aka launch images)')
 	.option('-l, --locale <code>', 'outputs to i18n folders')
@@ -89,6 +94,23 @@ function icons(input, env) {
 			logger.error(err);
 		} else {
 			logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' icons');
+		}
+	});
+}
+
+function adaptiveicons(input, env) {
+	notifier.update && notifier.notify();
+
+	var options = _filterOptions(env);
+
+	options.cli = true;
+	options.input = input;
+
+	ticons.adaptiveicons(options, function (err, output) {
+		if (err) {
+			logger.error(err);
+		} else {
+			logger.ok('Generated ' + _.size(_.filter(output, _.identity)) + ' icon_foreground');
 		}
 	});
 }

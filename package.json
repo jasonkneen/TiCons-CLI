@@ -44,9 +44,9 @@
     "fs-extended": "^0.2.0",
     "gm": "~1.23.1",
     "semver": "^5.0.1",
+    "sindresorhus": "^3.0.2",
     "underscore": "^1.5.2",
-    "update-notifier": "^5.0.0",
-    "sindresorhus": "^3.0.2"
+    "update-notifier": "^7.0.0"
   },
   "repository": {
     "type": "git",
